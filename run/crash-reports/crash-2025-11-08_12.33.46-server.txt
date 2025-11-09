@@ -1,0 +1,241 @@
+---- Minecraft Crash Report ----
+// Oops.
+
+Time: 2025-11-08 12:33:46
+Description: Ticking entity
+
+org.spongepowered.asm.mixin.transformer.throwables.MixinTransformerError: An unexpected critical error was encountered
+	at org.spongepowered.asm.mixin.transformer.MixinProcessor.applyMixins(MixinProcessor.java:392) ~[mixin-0.8.5.jar:0.8.5+Jenkins-b310.git-155314e6e91465dad727e621a569906a410cd6f4] {}
+	at org.spongepowered.asm.mixin.transformer.MixinTransformer.transformClass(MixinTransformer.java:250) ~[mixin-0.8.5.jar:0.8.5+Jenkins-b310.git-155314e6e91465dad727e621a569906a410cd6f4] {}
+	at org.spongepowered.asm.service.modlauncher.MixinTransformationHandler.processClass(MixinTransformationHandler.java:131) ~[mixin-0.8.5.jar:0.8.5+Jenkins-b310.git-155314e6e91465dad727e621a569906a410cd6f4] {}
+	at org.spongepowered.asm.launch.MixinLaunchPluginLegacy.processClass(MixinLaunchPluginLegacy.java:131) ~[mixin-0.8.5.jar:0.8.5+Jenkins-b310.git-155314e6e91465dad727e621a569906a410cd6f4] {}
+	at cpw.mods.modlauncher.serviceapi.ILaunchPluginService.processClassWithFlags(ILaunchPluginService.java:156) ~[modlauncher-10.0.9.jar:10.0.9+10.0.9+main.dcd20f30] {}
+	at cpw.mods.modlauncher.LaunchPluginHandler.offerClassNodeToPlugins(LaunchPluginHandler.java:88) ~[modlauncher-10.0.9.jar:?] {}
+	at cpw.mods.modlauncher.ClassTransformer.transform(ClassTransformer.java:120) ~[modlauncher-10.0.9.jar:?] {}
+	at cpw.mods.modlauncher.TransformingClassLoader.maybeTransformClassBytes(TransformingClassLoader.java:50) ~[modlauncher-10.0.9.jar:?] {}
+	at cpw.mods.cl.ModuleClassLoader.readerToClass(ModuleClassLoader.java:113) ~[securejarhandler-2.1.10.jar:?] {}
+	at cpw.mods.cl.ModuleClassLoader.lambda$findClass$15(ModuleClassLoader.java:219) ~[securejarhandler-2.1.10.jar:?] {}
+	at cpw.mods.cl.ModuleClassLoader.loadFromModule(ModuleClassLoader.java:229) ~[securejarhandler-2.1.10.jar:?] {}
+	at cpw.mods.cl.ModuleClassLoader.findClass(ModuleClassLoader.java:219) ~[securejarhandler-2.1.10.jar:?] {}
+	at cpw.mods.cl.ModuleClassLoader.loadClass(ModuleClassLoader.java:135) ~[securejarhandler-2.1.10.jar:?] {}
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:525) ~[?:?] {}
+	at net.minecraft.world.entity.monster.piglin.PiglinAi.initCoreActivity(PiglinAi.java:134) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:mixin,re:classloading,pl:mixin:APP:masterchanges.mixins.json:PiglinAiMixin,pl:mixin:A}
+	at net.minecraft.world.entity.monster.piglin.PiglinAi.makeBrain(PiglinAi.java:115) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:mixin,re:classloading,pl:mixin:APP:masterchanges.mixins.json:PiglinAiMixin,pl:mixin:A}
+	at net.minecraft.world.entity.monster.piglin.Piglin.makeBrain(Piglin.java:200) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:mixin,re:classloading,pl:mixin:APP:masterchanges.mixins.json:PiglinMixin,pl:mixin:A}
+	at net.minecraft.world.entity.LivingEntity.<init>(LivingEntity.java:245) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:mixin,re:classloading,pl:mixin:APP:masterchanges.mixins.json:LivingEntityMixin,pl:mixin:APP:masterchanges.mixins.json:ShieldMixin,pl:mixin:A}
+	at net.minecraft.world.entity.Mob.<init>(Mob.java:123) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading,pl:accesstransformer:B,re:mixin,pl:accesstransformer:B}
+	at net.minecraft.world.entity.PathfinderMob.<init>(PathfinderMob.java:14) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading,re:mixin}
+	at net.minecraft.world.entity.monster.Monster.<init>(Monster.java:31) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:mixin,re:classloading,pl:mixin:APP:masterchanges.mixins.json:MonsterMixin,pl:mixin:A}
+	at net.minecraft.world.entity.monster.piglin.AbstractPiglin.<init>(AbstractPiglin.java:32) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:mixin,re:classloading}
+	at net.minecraft.world.entity.monster.piglin.Piglin.<init>(Piglin.java:79) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:mixin,re:classloading,pl:mixin:APP:masterchanges.mixins.json:PiglinMixin,pl:mixin:A}
+	at net.minecraft.world.entity.EntityType.create(EntityType.java:525) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:mixin,xf:fml:forge:forge_method_redirector,re:classloading,xf:fml:forge:forge_method_redirector}
+	at net.minecraft.world.entity.EntityType.lambda$create$4(EntityType.java:530) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:mixin,xf:fml:forge:forge_method_redirector,re:classloading,xf:fml:forge:forge_method_redirector}
+	at java.util.Optional.map(Optional.java:260) ~[?:?] {}
+	at net.minecraft.world.entity.EntityType.create(EntityType.java:529) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:mixin,xf:fml:forge:forge_method_redirector,re:classloading,xf:fml:forge:forge_method_redirector}
+	at net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate.createEntityIgnoreException(StructureTemplate.java:444) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading,xf:fml:forge:forge_method_redirector}
+	at net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate.addEntitiesToWorld(StructureTemplate.java:427) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading,xf:fml:forge:forge_method_redirector}
+	at net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate.placeInWorld(StructureTemplate.java:337) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading,xf:fml:forge:forge_method_redirector}
+	at net.minecraft.world.level.levelgen.structure.pools.SinglePoolElement.place(SinglePoolElement.java:124) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading}
+	at net.minecraft.world.level.levelgen.structure.PoolElementStructurePiece.place(PoolElementStructurePiece.java:89) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading}
+	at net.minecraft.world.level.levelgen.structure.PoolElementStructurePiece.postProcess(PoolElementStructurePiece.java:85) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading}
+	at net.minecraft.world.level.levelgen.structure.StructureStart.placeInChunk(StructureStart.java:90) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading}
+	at net.minecraft.world.level.chunk.ChunkGenerator.lambda$applyBiomeDecoration$8(ChunkGenerator.java:320) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading}
+	at com.google.common.collect.ImmutableList.forEach(ImmutableList.java:422) ~[guava-31.1-jre.jar%2394!/:?] {}
+	at net.minecraft.world.level.chunk.ChunkGenerator.applyBiomeDecoration(ChunkGenerator.java:319) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading}
+	at net.minecraft.world.level.chunk.ChunkStatus.lambda$static$11(ChunkStatus.java:108) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.world.level.chunk.ChunkStatus$SimpleGenerationTask.doWork(ChunkStatus.java:309) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading}
+	at net.minecraft.world.level.chunk.ChunkStatus.generate(ChunkStatus.java:252) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.server.level.ChunkMap.lambda$scheduleChunkGeneration$27(ChunkMap.java:643) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading}
+	at com.mojang.datafixers.util.Either$Left.map(Either.java:38) ~[datafixerupper-6.0.8.jar%23124!/:?] {}
+	at net.minecraft.server.level.ChunkMap.lambda$scheduleChunkGeneration$29(ChunkMap.java:634) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading}
+	at java.util.concurrent.CompletableFuture$UniCompose.tryFire(CompletableFuture.java:1150) ~[?:?] {}
+	at java.util.concurrent.CompletableFuture$Completion.run(CompletableFuture.java:482) ~[?:?] {}
+	at net.minecraft.server.level.ChunkTaskPriorityQueueSorter.lambda$message$1(ChunkTaskPriorityQueueSorter.java:62) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading}
+	at net.minecraft.util.thread.ProcessorMailbox.pollTask(ProcessorMailbox.java:91) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading}
+	at net.minecraft.util.thread.ProcessorMailbox.pollUntil(ProcessorMailbox.java:146) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading}
+	at net.minecraft.util.thread.ProcessorMailbox.run(ProcessorMailbox.java:102) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading}
+	at java.util.concurrent.ForkJoinTask$RunnableExecuteAction.exec(ForkJoinTask.java:1395) ~[?:?] {}
+	at java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:373) ~[?:?] {}
+	at java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1182) ~[?:?] {}
+	at java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1655) ~[?:?] {}
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1622) ~[?:?] {}
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:165) ~[?:?] {}
+Caused by: org.spongepowered.asm.mixin.throwables.MixinApplyError: Mixin [masterchanges.mixins.json:StopHoldingItemGoalMixin] from phase [DEFAULT] in config [masterchanges.mixins.json] FAILED during APPLY
+	at org.spongepowered.asm.mixin.transformer.MixinProcessor.handleMixinError(MixinProcessor.java:636) ~[mixin-0.8.5.jar:0.8.5+Jenkins-b310.git-155314e6e91465dad727e621a569906a410cd6f4] {}
+	at org.spongepowered.asm.mixin.transformer.MixinProcessor.handleMixinApplyError(MixinProcessor.java:588) ~[mixin-0.8.5.jar:0.8.5+Jenkins-b310.git-155314e6e91465dad727e621a569906a410cd6f4] {}
+	at org.spongepowered.asm.mixin.transformer.MixinProcessor.applyMixins(MixinProcessor.java:379) ~[mixin-0.8.5.jar:0.8.5+Jenkins-b310.git-155314e6e91465dad727e621a569906a410cd6f4] {}
+	... 54 more
+Caused by: org.spongepowered.asm.mixin.injection.throwables.InvalidInjectionException: Critical injection failure: @Inject annotation on onTick could not find any targets matching 'tick' in net.minecraft.world.entity.monster.piglin.StopHoldingItemIfNoLongerAdmiring. No refMap loaded. [PREINJECT Applicator Phase -> masterchanges.mixins.json:StopHoldingItemGoalMixin -> Prepare Injections ->  -> handler$zbj001$onTick(Lorg/spongepowered/asm/mixin/injection/callback/CallbackInfo;)V -> Parse]
+	at org.spongepowered.asm.mixin.injection.struct.InjectionInfo.validateTargets(InjectionInfo.java:656) ~[mixin-0.8.5.jar:0.8.5+Jenkins-b310.git-155314e6e91465dad727e621a569906a410cd6f4] {}
+	at org.spongepowered.asm.mixin.injection.struct.InjectionInfo.findTargets(InjectionInfo.java:587) ~[mixin-0.8.5.jar:0.8.5+Jenkins-b310.git-155314e6e91465dad727e621a569906a410cd6f4] {}
+	at org.spongepowered.asm.mixin.injection.struct.InjectionInfo.readAnnotation(InjectionInfo.java:330) ~[mixin-0.8.5.jar:0.8.5+Jenkins-b310.git-155314e6e91465dad727e621a569906a410cd6f4] {}
+	at org.spongepowered.asm.mixin.injection.struct.InjectionInfo.<init>(InjectionInfo.java:316) ~[mixin-0.8.5.jar:0.8.5+Jenkins-b310.git-155314e6e91465dad727e621a569906a410cd6f4] {}
+	at org.spongepowered.asm.mixin.injection.struct.InjectionInfo.<init>(InjectionInfo.java:308) ~[mixin-0.8.5.jar:0.8.5+Jenkins-b310.git-155314e6e91465dad727e621a569906a410cd6f4] {}
+	at org.spongepowered.asm.mixin.injection.struct.CallbackInjectionInfo.<init>(CallbackInjectionInfo.java:46) ~[mixin-0.8.5.jar:0.8.5+Jenkins-b310.git-155314e6e91465dad727e621a569906a410cd6f4] {}
+	at jdk.internal.reflect.GeneratedConstructorAccessor17.newInstance(Unknown Source) ~[?:?] {}
+	at jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[?:?] {}
+	at java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500) ~[?:?] {}
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:481) ~[?:?] {}
+	at org.spongepowered.asm.mixin.injection.struct.InjectionInfo$InjectorEntry.create(InjectionInfo.java:149) ~[mixin-0.8.5.jar:0.8.5+Jenkins-b310.git-155314e6e91465dad727e621a569906a410cd6f4] {}
+	at org.spongepowered.asm.mixin.injection.struct.InjectionInfo.parse(InjectionInfo.java:708) ~[mixin-0.8.5.jar:0.8.5+Jenkins-b310.git-155314e6e91465dad727e621a569906a410cd6f4] {}
+	at org.spongepowered.asm.mixin.transformer.MixinTargetContext.prepareInjections(MixinTargetContext.java:1311) ~[mixin-0.8.5.jar:0.8.5+Jenkins-b310.git-155314e6e91465dad727e621a569906a410cd6f4] {}
+	at org.spongepowered.asm.mixin.transformer.MixinApplicatorStandard.prepareInjections(MixinApplicatorStandard.java:1042) ~[mixin-0.8.5.jar:0.8.5+Jenkins-b310.git-155314e6e91465dad727e621a569906a410cd6f4] {}
+	at org.spongepowered.asm.mixin.transformer.MixinApplicatorStandard.applyMixin(MixinApplicatorStandard.java:393) ~[mixin-0.8.5.jar:0.8.5+Jenkins-b310.git-155314e6e91465dad727e621a569906a410cd6f4] {}
+	at org.spongepowered.asm.mixin.transformer.MixinApplicatorStandard.apply(MixinApplicatorStandard.java:325) ~[mixin-0.8.5.jar:0.8.5+Jenkins-b310.git-155314e6e91465dad727e621a569906a410cd6f4] {}
+	at org.spongepowered.asm.mixin.transformer.TargetClassContext.apply(TargetClassContext.java:383) ~[mixin-0.8.5.jar:0.8.5+Jenkins-b310.git-155314e6e91465dad727e621a569906a410cd6f4] {}
+	at org.spongepowered.asm.mixin.transformer.TargetClassContext.applyMixins(TargetClassContext.java:365) ~[mixin-0.8.5.jar:0.8.5+Jenkins-b310.git-155314e6e91465dad727e621a569906a410cd6f4] {}
+	at org.spongepowered.asm.mixin.transformer.MixinProcessor.applyMixins(MixinProcessor.java:363) ~[mixin-0.8.5.jar:0.8.5+Jenkins-b310.git-155314e6e91465dad727e621a569906a410cd6f4] {}
+	... 54 more
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Thread: Server thread
+Suspected Mods: NONE
+Stacktrace:
+	at org.spongepowered.asm.mixin.transformer.MixinProcessor.applyMixins(MixinProcessor.java:392) ~[mixin-0.8.5.jar:0.8.5+Jenkins-b310.git-155314e6e91465dad727e621a569906a410cd6f4] {}
+	at org.spongepowered.asm.mixin.transformer.MixinTransformer.transformClass(MixinTransformer.java:250) ~[mixin-0.8.5.jar:0.8.5+Jenkins-b310.git-155314e6e91465dad727e621a569906a410cd6f4] {}
+	at org.spongepowered.asm.service.modlauncher.MixinTransformationHandler.processClass(MixinTransformationHandler.java:131) ~[mixin-0.8.5.jar:0.8.5+Jenkins-b310.git-155314e6e91465dad727e621a569906a410cd6f4] {}
+	at org.spongepowered.asm.launch.MixinLaunchPluginLegacy.processClass(MixinLaunchPluginLegacy.java:131) ~[mixin-0.8.5.jar:0.8.5+Jenkins-b310.git-155314e6e91465dad727e621a569906a410cd6f4] {}
+	at cpw.mods.modlauncher.serviceapi.ILaunchPluginService.processClassWithFlags(ILaunchPluginService.java:156) ~[modlauncher-10.0.9.jar:10.0.9+10.0.9+main.dcd20f30] {}
+	at cpw.mods.modlauncher.LaunchPluginHandler.offerClassNodeToPlugins(LaunchPluginHandler.java:88) ~[modlauncher-10.0.9.jar:?] {}
+	at cpw.mods.modlauncher.ClassTransformer.transform(ClassTransformer.java:120) ~[modlauncher-10.0.9.jar:?] {}
+	at cpw.mods.modlauncher.TransformingClassLoader.maybeTransformClassBytes(TransformingClassLoader.java:50) ~[modlauncher-10.0.9.jar:?] {}
+	at cpw.mods.cl.ModuleClassLoader.readerToClass(ModuleClassLoader.java:113) ~[securejarhandler-2.1.10.jar:?] {}
+	at cpw.mods.cl.ModuleClassLoader.lambda$findClass$15(ModuleClassLoader.java:219) ~[securejarhandler-2.1.10.jar:?] {}
+	at cpw.mods.cl.ModuleClassLoader.loadFromModule(ModuleClassLoader.java:229) ~[securejarhandler-2.1.10.jar:?] {}
+	at cpw.mods.cl.ModuleClassLoader.findClass(ModuleClassLoader.java:219) ~[securejarhandler-2.1.10.jar:?] {}
+	at cpw.mods.cl.ModuleClassLoader.loadClass(ModuleClassLoader.java:135) ~[securejarhandler-2.1.10.jar:?] {}
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:525) ~[?:?] {}
+	at net.minecraft.world.entity.monster.piglin.PiglinAi.initCoreActivity(PiglinAi.java:134) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:mixin,re:classloading,pl:mixin:APP:masterchanges.mixins.json:PiglinAiMixin,pl:mixin:A}
+	at net.minecraft.world.entity.monster.piglin.PiglinAi.makeBrain(PiglinAi.java:115) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:mixin,re:classloading,pl:mixin:APP:masterchanges.mixins.json:PiglinAiMixin,pl:mixin:A}
+	at net.minecraft.world.entity.monster.piglin.Piglin.makeBrain(Piglin.java:200) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:mixin,re:classloading,pl:mixin:APP:masterchanges.mixins.json:PiglinMixin,pl:mixin:A}
+	at net.minecraft.world.entity.LivingEntity.<init>(LivingEntity.java:245) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:mixin,re:classloading,pl:mixin:APP:masterchanges.mixins.json:LivingEntityMixin,pl:mixin:APP:masterchanges.mixins.json:ShieldMixin,pl:mixin:A}
+	at net.minecraft.world.entity.Mob.<init>(Mob.java:123) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading,pl:accesstransformer:B,re:mixin,pl:accesstransformer:B}
+	at net.minecraft.world.entity.PathfinderMob.<init>(PathfinderMob.java:14) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading,re:mixin}
+	at net.minecraft.world.entity.monster.Monster.<init>(Monster.java:31) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:mixin,re:classloading,pl:mixin:APP:masterchanges.mixins.json:MonsterMixin,pl:mixin:A}
+	at net.minecraft.world.entity.monster.piglin.AbstractPiglin.<init>(AbstractPiglin.java:32) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:mixin,re:classloading}
+	at net.minecraft.world.entity.monster.piglin.Piglin.<init>(Piglin.java:79) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:mixin,re:classloading,pl:mixin:APP:masterchanges.mixins.json:PiglinMixin,pl:mixin:A}
+	at net.minecraft.world.entity.EntityType.create(EntityType.java:525) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:mixin,xf:fml:forge:forge_method_redirector,re:classloading,xf:fml:forge:forge_method_redirector}
+	at net.minecraft.world.entity.EntityType.lambda$create$4(EntityType.java:530) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:mixin,xf:fml:forge:forge_method_redirector,re:classloading,xf:fml:forge:forge_method_redirector}
+	at java.util.Optional.map(Optional.java:260) ~[?:?] {}
+	at net.minecraft.world.entity.EntityType.create(EntityType.java:529) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:mixin,xf:fml:forge:forge_method_redirector,re:classloading,xf:fml:forge:forge_method_redirector}
+	at net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate.createEntityIgnoreException(StructureTemplate.java:444) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading,xf:fml:forge:forge_method_redirector}
+	at net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate.addEntitiesToWorld(StructureTemplate.java:427) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading,xf:fml:forge:forge_method_redirector}
+	at net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate.placeInWorld(StructureTemplate.java:337) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading,xf:fml:forge:forge_method_redirector}
+	at net.minecraft.world.level.levelgen.structure.pools.SinglePoolElement.place(SinglePoolElement.java:124) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading}
+	at net.minecraft.world.level.levelgen.structure.PoolElementStructurePiece.place(PoolElementStructurePiece.java:89) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading}
+	at net.minecraft.world.level.levelgen.structure.PoolElementStructurePiece.postProcess(PoolElementStructurePiece.java:85) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading}
+	at net.minecraft.world.level.levelgen.structure.StructureStart.placeInChunk(StructureStart.java:90) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading}
+	at net.minecraft.world.level.chunk.ChunkGenerator.lambda$applyBiomeDecoration$8(ChunkGenerator.java:320) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading}
+	at com.google.common.collect.ImmutableList.forEach(ImmutableList.java:422) ~[guava-31.1-jre.jar%2394!/:?] {}
+	at net.minecraft.world.level.chunk.ChunkGenerator.applyBiomeDecoration(ChunkGenerator.java:319) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading}
+	at net.minecraft.world.level.chunk.ChunkStatus.lambda$static$11(ChunkStatus.java:108) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.world.level.chunk.ChunkStatus$SimpleGenerationTask.doWork(ChunkStatus.java:309) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading}
+	at net.minecraft.world.level.chunk.ChunkStatus.generate(ChunkStatus.java:252) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.server.level.ChunkMap.lambda$scheduleChunkGeneration$27(ChunkMap.java:643) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading}
+	at com.mojang.datafixers.util.Either$Left.map(Either.java:38) ~[datafixerupper-6.0.8.jar%23124!/:?] {}
+	at net.minecraft.server.level.ChunkMap.lambda$scheduleChunkGeneration$29(ChunkMap.java:634) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading}
+	at java.util.concurrent.CompletableFuture$UniCompose.tryFire(CompletableFuture.java:1150) ~[?:?] {}
+	at java.util.concurrent.CompletableFuture$Completion.run(CompletableFuture.java:482) ~[?:?] {}
+-- Entity being ticked --
+Details:
+	Entity Type: minecraft:enderman (net.minecraft.world.entity.monster.EnderMan)
+	Entity ID: 5528
+	Entity Name: Enderman
+	Entity's Exact location: 9.50, 111.00, -40.50
+	Entity's Block location: World: (9,111,-41), Section: (at 9,15,7 in 0,6,-3; chunk contains blocks 0,0,-48 to 15,255,-33), Region: (0,-1; contains chunks 0,-32 to 31,-1, blocks 0,0,-512 to 511,255,-1)
+	Entity's Momentum: 0.00, -0.08, 0.00
+	Entity's Passengers: []
+	Entity's Vehicle: null
+Stacktrace:
+	at net.minecraft.world.level.Level.guardEntityTick(Level.java:482) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:mixin,pl:accesstransformer:B,re:classloading,pl:accesstransformer:B}
+	at net.minecraft.server.level.ServerLevel.lambda$tick$6(ServerLevel.java:343) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:mixin,pl:accesstransformer:B,re:classloading,pl:accesstransformer:B}
+	at net.minecraft.world.level.entity.EntityTickList.forEach(EntityTickList.java:54) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading}
+	at net.minecraft.server.level.ServerLevel.tick(ServerLevel.java:323) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:mixin,pl:accesstransformer:B,re:classloading,pl:accesstransformer:B}
+	at net.minecraft.server.MinecraftServer.tickChildren(MinecraftServer.java:893) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.server.MinecraftServer.tickServer(MinecraftServer.java:814) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.client.server.IntegratedServer.tickServer(IntegratedServer.java:89) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading,pl:runtimedistcleaner:A}
+	at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:661) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.server.MinecraftServer.lambda$spin$2(MinecraftServer.java:251) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading,pl:accesstransformer:B}
+	at java.lang.Thread.run(Thread.java:840) ~[?:?] {}
+
+
+-- Affected level --
+Details:
+	All players: 1 total; [ServerPlayer['Dev'/171, l='ServerLevel[New World]', x=-26.71, y=66.00, z=-6.18]]
+	Chunk stats: 1183
+	Level dimension: minecraft:the_nether
+	Derived: true
+	Level spawn location: World: (0,73,0), Section: (at 0,9,0 in 0,4,0; chunk contains blocks 0,0,0 to 15,255,15), Region: (0,0; contains chunks 0,0 to 31,31, blocks 0,0,0 to 511,255,511)
+	Level time: 12324 game time, 12324 day time
+	Level name: New World
+	Level game mode: Game mode: creative (ID 1). Hardcore: false. Cheats: true
+	Level weather: Rain time: 14377 (now: true), thunder time: 14377 (now: false)
+	Known server brands: forge
+	Removed feature flags: 
+	Level was modded: true
+	Level storage version: 0x04ABD - Anvil
+
+-- System Details --
+Details:
+	Minecraft Version: 1.20.1
+	Minecraft Version ID: 1.20.1
+	Operating System: Linux (amd64) version 6.17.7-200.fc42.x86_64
+	Java Version: 17.0.17, Eclipse Adoptium
+	Java VM Version: OpenJDK 64-Bit Server VM (mixed mode, sharing), Eclipse Adoptium
+	Memory: 447315456 bytes (426 MiB) / 1592786944 bytes (1519 MiB) up to 2034237440 bytes (1940 MiB)
+	CPUs: 4
+	Processor Vendor: GenuineIntel
+	Processor Name: Intel(R) Pentium(R) CPU 6405U @ 2.40GHz
+	Identifier: Intel64 Family 6 Model 142 Stepping 12
+	Microarchitecture: Whiskey Lake
+	Frequency (GHz): 2.40
+	Number of physical packages: 1
+	Number of physical CPUs: 2
+	Number of logical CPUs: 4
+	Graphics card #0 name: Comet Lake-U GT2 [UHD Graphics 620]
+	Graphics card #0 vendor: Intel Corporation (0x8086)
+	Graphics card #0 VRAM (MB): 256.00
+	Graphics card #0 deviceId: 0x9b21
+	Graphics card #0 versionInfo: unknown
+	Virtual memory max (MB): 22308.11
+	Virtual memory used (MB): 10382.28
+	Swap memory total (MB): 18432.00
+	Swap memory used (MB): 3160.27
+	JVM Flags: 0 total; 
+	Server Running: true
+	Player Count: 1 / 8; [ServerPlayer['Dev'/171, l='ServerLevel[New World]', x=-26.71, y=66.00, z=-6.18]]
+	Data Packs: vanilla, mod:forge, mod:masterchanges
+	Enabled Feature Flags: minecraft:vanilla
+	World Generation: Stable
+	Type: Integrated Server (map_client.txt)
+	Is Modded: Definitely; Client brand changed to 'forge'; Server brand changed to 'forge'
+	Launched Version: MOD_DEV
+	ModLauncher: 10.0.9+10.0.9+main.dcd20f30
+	ModLauncher launch target: forgeclientuserdev
+	ModLauncher naming: mcp
+	ModLauncher services: 
+		mixin-0.8.5.jar mixin PLUGINSERVICE 
+		eventbus-6.0.5.jar eventbus PLUGINSERVICE 
+		fmlloader-1.20.1-47.4.8.jar slf4jfixer PLUGINSERVICE 
+		fmlloader-1.20.1-47.4.8.jar object_holder_definalize PLUGINSERVICE 
+		fmlloader-1.20.1-47.4.8.jar runtime_enum_extender PLUGINSERVICE 
+		fmlloader-1.20.1-47.4.8.jar capability_token_subclass PLUGINSERVICE 
+		accesstransformers-8.0.4.jar accesstransformer PLUGINSERVICE 
+		fmlloader-1.20.1-47.4.8.jar runtimedistcleaner PLUGINSERVICE 
+		modlauncher-10.0.9.jar mixin TRANSFORMATIONSERVICE 
+		modlauncher-10.0.9.jar fml TRANSFORMATIONSERVICE 
+	FML Language Providers: 
+		minecraft@1.0
+		lowcodefml@null
+		javafml@null
+	Mod List: 
+		forge-1.20.1-47.4.8_mapped_official_1.20.1.jar    |Minecraft                     |minecraft                     |1.20.1              |DONE      |Manifest: a1:d4:5e:04:4f:d3:d6:e0:7b:37:97:cf:77:b0:de:ad:4a:47:ce:8c:96:49:5f:0a:cf:8c:ae:b2:6d:4b:8a:3f
+		                                                  |Forge                         |forge                         |47.4.8              |DONE      |Manifest: NOSIGNATURE
+		main                                              |MasterChanges                 |masterchanges                 |1.0-SNAPSHOT        |DONE      |Manifest: NOSIGNATURE
+	Crash Report UUID: fcc832ec-5222-4299-8a93-6588645a31e9
+	FML: 47.4
+	Forge: net.minecraftforge:47.4.8

@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.me.master.masterchanges.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "masterchanges.refmap.json",
+  "mixins": ["BedBlockMixin","BlazeMixin","BlockBehaviourMixin","BlockBehaviourTickMixin","CreeperMixin","DrownedMixin","EnchantmentMixin","EndermanMixin","EvokerFangsMixin","EvokerMixin","FlowingFluidMixin","GhastMixin","GuardianMixin","ItemMixin","LargeFireballMixin","LavaFluidMixin","LivingEntityMixin","MagmaCubeMixin","MonsterMixin","NaturalSpawnerMixin","PiglinAiMixin","PiglinMixin","ShieldMixin","ShulkerMixin","SlimeMixin","VexMixin","WitchMixin","ZombieMixin", "StrayFreezeMixin","ZombieImmobilizeMixin","IllusionerSpawnMixin","GiantAIMixin","PillagerRocketMixin"],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}
