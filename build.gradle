@@ -1,10 +1,10 @@
 buildscript {
     repositories {
-        maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }  // Para MixinGradle
+        maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
         mavenCentral()
     }
     dependencies {
-        classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'  // Tu versión original, correcta
+        classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
     }
 }
 
@@ -14,7 +14,7 @@ plugins {
     id 'net.minecraftforge.gradle' version '[6.0.16,6.2)'
 }
 
-apply plugin: 'org.spongepowered.mixin'  // Aplicar aquí, después de buildscript
+apply plugin: 'org.spongepowered.mixin'
 
 group = mod_group_id
 version = mod_version
@@ -28,7 +28,7 @@ java {
 }
 
 minecraft {
-    mappings channel: 'official', version: '1.20.1'  // Agregado: arregla resolución de símbolos en mixins
+    mappings channel: 'official', version: '1.20.1'
 
     copyIdeResources = true
 
@@ -37,6 +37,9 @@ minecraft {
             workingDirectory project.file('run')
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+
             mods {
                 "${mod_id}" {
                     source sourceSets.main
@@ -65,7 +68,7 @@ minecraft {
 }
 
 mixin {
-    add sourceSets.main, "${mod_id}.refmap.json"  // Agregado: para que mixins resuelvan métodos como 'hurt'
+    add sourceSets.main, "${mod_id}.refmap.json"
     config "${mod_id}.mixins.json"
 }
 
@@ -73,12 +76,21 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
     mavenCentral()
-    // Si necesitas más repos, agrégalos aquí
+    maven {
+        name = 'GeckoLib'
+        url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+        content {
+            includeGroupByRegex("software\\.bernie.*")
+            includeGroup("com.eliotlash.mclib")
+        }
+    }
 }
 
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+    implementation fg.deobf("software.bernie.geckolib:geckolib-forge-1.20.1:4.7")
+    implementation fg.deobf("com.eliotlash.mclib:mclib:20")
 }
 
 tasks.named('processResources', ProcessResources).configure {
@@ -106,7 +118,8 @@ tasks.named('jar', Jar).configure {
                 "Implementation-Title"    : project.name,
                 "Implementation-Version"  : project.jar.archiveVersion,
                 "Implementation-Vendor"   : mod_authors,
-                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+                "MixinConfigs"            : "${mod_id}.mixins.json"
         ])
     }
 
