@@ -61,7 +61,13 @@ public enum DifficultyFeature {
     GIANT_AI("giant_ai", "Giant tiene IA completa para atacar y moverse"),
     VILLAGER_NO_BREEDING("villager_no_breeding", "Aldeanos no se reproducen"),
     VILLAGER_STRESS_SMALL_SPACE("villager_stress", "Aldeanos estresados en espacios pequeños: trades caros o bloqueados"),
-    VILLAGER_TRADE_RAID("villager_raid_trigger", "Trades con aldeanos pueden invocar raids");
+    VILLAGER_TRADE_RAID("villager_raid_trigger", "Trades con aldeanos pueden invocar raids"),
+    PASSIVE_MOBS_AGGRESSIVE("passive_mobs_aggressive", "Mobs pacíficos son agresivos (excepto ajolote)"),
+    CACTUS_INSANE_DAMAGE("cactus_insane_damage", "Cactus hace 9M de daño e insta-rompe armadura"),
+    BUTTON_INSANE_DAMAGE("button_insane_damage", "Botones hacen 9M de daño"),
+    DOOR_INSANE_DAMAGE("door_insane_damage", "Puertas hacen 9M de daño"),
+    SPAWN_ON_NON_SOLID("spawn_on_non_solid", "Mobs spawnean en vallas, puertas, cadenas");
+
 
 
 

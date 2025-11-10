@@ -7,20 +7,17 @@ import net.minecraft.world.entity.monster.Ghast;
 import net.minecraft.world.entity.projectile.LargeFireball;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import org.objectweb.asm.Opcodes;  // Import ASM para Opcodes (incluido en Mixin/Forge)
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(targets = "net.minecraft.world.entity.monster.Ghast$GhastShootFireballGoal")
 public class GhastMixin {
 
     @Shadow @Final private Ghast ghast;
-
     @Shadow public int chargeTime;
 
     @Inject(method = "tick", at = @At(value = "INVOKE",
@@ -55,12 +52,14 @@ public class GhastMixin {
         }
     }
 
-
-    @ModifyArg(method = "tick", at = @At(value = "FIELD", target = "Lnet/minecraft/world/entity/monster/Ghast$GhastShootFireballGoal;chargeTime:I", opcode = Opcodes.PUTFIELD), index = 0)
-    private int reduceCooldown(int original) {
-        if (DifficultyManager.getInstance().isFeatureEnabled(DifficultyFeature.GHAST_DOUBLE_FIREBALL) && original == -40) {
-            return -20;
+    @Inject(method = "tick", at = @At(value = "INVOKE",
+            target = "Lnet/minecraft/world/level/Level;addFreshEntity(Lnet/minecraft/world/entity/Entity;)Z",
+            shift = At.Shift.AFTER))
+    private void reduceCooldown(CallbackInfo ci) {
+        if (DifficultyManager.getInstance().isFeatureEnabled(DifficultyFeature.GHAST_DOUBLE_FIREBALL)) {
+            if (this.chargeTime == -40) {
+                this.chargeTime = -20;
+            }
         }
-        return original;
     }
 }
