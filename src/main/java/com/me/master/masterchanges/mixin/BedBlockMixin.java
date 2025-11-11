@@ -6,7 +6,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BedBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -30,8 +29,8 @@ public class BedBlockMixin {
 
                 if (isNight) {
                     level.removeBlock(pos, false);
-                    level.explode(player, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
-                            5.0F, true, Level.ExplosionInteraction.MOB);
+                    level.explode(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
+                            5.0F, true, Level.ExplosionInteraction.BLOCK);
                     cir.setReturnValue(InteractionResult.SUCCESS);
                 }
             }

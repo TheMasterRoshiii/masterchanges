@@ -1,6 +1,7 @@
 package com.me.master.masterchanges;
 
 import com.me.master.masterchanges.command.DifficultyCommand;
+import com.me.master.masterchanges.item.ModItems;
 import com.mojang.logging.LogUtils;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
@@ -20,6 +21,7 @@ public class MasterChanges {
 
     public MasterChanges() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        ModItems.ITEMS.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 

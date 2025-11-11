@@ -66,7 +66,14 @@ public enum DifficultyFeature {
     CACTUS_INSANE_DAMAGE("cactus_insane_damage", "Cactus hace 9M de daño e insta-rompe armadura"),
     BUTTON_INSANE_DAMAGE("button_insane_damage", "Botones hacen 9M de daño"),
     DOOR_INSANE_DAMAGE("door_insane_damage", "Puertas hacen 9M de daño"),
-    SPAWN_ON_NON_SOLID("spawn_on_non_solid", "Mobs spawnean en vallas, puertas, cadenas");
+    SPAWN_ON_NON_SOLID("spawn_on_non_solid", "Mobs spawnean en vallas, puertas, cadenas"),
+    BLAZE_REMOVE_FIRE_PROTECTION("blaze_remove_fire_protection", "Blazes eliminan protección contra fuego"),
+    BLAZE_BLUE_FIRE("blaze_blue_fire", "Blazes disparan bolas de fuego del dragon (moradas)"),
+    BUTTON_DAMAGE_ON_PRESS("button_damage_on_press", "Botones hacen 9M de daño al presionarse"),
+    DOOR_DAMAGE_ON_OPEN("door_damage_on_open", "Puertas hacen 9M de daño al abrirse"),
+    LEVER_DAMAGE_ON_USE("lever_damage_on_use", "Palancas hacen 9M de daño al usarse"),
+    TRAPDOOR_DAMAGE_ON_USE("trapdoor_damage_on_use", "Trampillas hacen 9M de daño al usarse");
+
 
 
 
