@@ -8,8 +8,6 @@ import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.network.simple.SimpleChannel;
 
-import java.util.Optional;
-
 public class ModNetworking {
     private static SimpleChannel INSTANCE;
     private static int packetId = 0;
@@ -39,6 +37,13 @@ public class ModNetworking {
                 .encoder(SyncConfigPacket::toBytes)
                 .consumerMainThread(SyncConfigPacket::handle)
                 .add();
+
+        net.messageBuilder(TotemPopPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(TotemPopPacket::new)
+                .encoder(TotemPopPacket::toBytes)
+                .consumerMainThread(TotemPopPacket::handle)
+                .add();
+
     }
 
     public static <MSG> void sendToServer(MSG message) {
