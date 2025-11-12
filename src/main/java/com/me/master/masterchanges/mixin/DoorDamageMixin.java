@@ -9,18 +9,21 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import com.me.master.masterchanges.config.MixinConfigManager;
 
 @Mixin(LivingEntity.class)
 public class DoorDamageMixin {
     @Inject(method = "tick", at = @At("HEAD"))
     private void doorDamage(CallbackInfo ci) {
+        MixinConfigManager config = MixinConfigManager.getInstance();
+
         if (DifficultyManager.getInstance().isFeatureEnabled(DifficultyFeature.DOOR_INSANE_DAMAGE)) {
             LivingEntity entity = (LivingEntity)(Object)this;
             BlockPos pos = entity.blockPosition();
 
             if (entity.level().getBlockState(pos).getBlock() instanceof DoorBlock ||
                     entity.level().getBlockState(pos.above()).getBlock() instanceof DoorBlock) {
-                entity.hurt(entity.level().damageSources().generic(), 9000000.0F);
+                entity.hurt(entity.level().damageSources().generic(), config.getFloat("door_insane_damage", "damage", 9000000.0f));
             }
         }
     }

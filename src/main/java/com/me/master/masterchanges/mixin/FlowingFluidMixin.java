@@ -8,6 +8,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import com.me.master.masterchanges.config.MixinConfigManager;
 
 @Mixin(FlowingFluid.class)
 public class FlowingFluidMixin {
@@ -17,11 +18,13 @@ public class FlowingFluidMixin {
                                    net.minecraft.world.level.material.FluidState currentState, 
                                    net.minecraft.world.level.material.FluidState newState, 
                                    CallbackInfoReturnable<Integer> cir) {
+        MixinConfigManager config = MixinConfigManager.getInstance();
+
         if (DifficultyManager.getInstance().isFeatureEnabled(DifficultyFeature.FAST_LAVA)) {
             FlowingFluid fluid = (FlowingFluid) (Object) this;
             if (fluid == Fluids.LAVA || fluid == Fluids.FLOWING_LAVA) {
                 int originalDelay = cir.getReturnValue();
-                cir.setReturnValue(originalDelay / 3);
+                cir.setReturnValue(originalDelay / config.getInt("fast_lava", "value", 3));
             }
         }
     }

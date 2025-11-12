@@ -1,6 +1,7 @@
 package com.me.master.masterchanges.event;
 
 import com.me.master.masterchanges.MasterChanges;
+import com.me.master.masterchanges.config.MixinConfigManager;
 import com.me.master.masterchanges.difficulty.DifficultyFeature;
 import com.me.master.masterchanges.difficulty.DifficultyManager;
 import net.minecraft.core.BlockPos;
@@ -13,18 +14,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.monster.CaveSpider;
-import net.minecraft.world.entity.monster.Monster;
-import net.minecraft.world.entity.monster.Phantom;
-import net.minecraft.world.entity.monster.Silverfish;
-import net.minecraft.world.entity.monster.Endermite;
-import net.minecraft.world.entity.monster.Husk;
-import net.minecraft.world.entity.monster.Skeleton;
-import net.minecraft.world.entity.monster.WitherSkeleton;
-import net.minecraft.world.entity.monster.Vindicator;
-import net.minecraft.world.entity.monster.Witch;
-import net.minecraft.world.entity.monster.Spider;
-import net.minecraft.world.entity.monster.Zombie;
+import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.entity.monster.piglin.Piglin;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
@@ -37,8 +27,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.level.BlockEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -52,17 +42,25 @@ public class DifficultyEventHandler {
     @SubscribeEvent
     public static void onSpiderNearPlayer(LivingEvent.LivingTickEvent event) {
         if (!DifficultyManager.getInstance().isFeatureEnabled(DifficultyFeature.SPIDER_WEBS)) return;
+        MixinConfigManager config = MixinConfigManager.getInstance();
+
         LivingEntity entity = event.getEntity();
         if (!(entity instanceof Spider spider)) return;
         Level level = entity.level();
         if (level.isClientSide) return;
-        if (spider.tickCount % 40 != 0) return;
-        Player nearestPlayer = level.getNearestPlayer(spider, 5.0);
+
+        int tickInterval = config.getInt("spider_webs", "tickInterval", 40);
+        double detectionRange = config.getDouble("spider_webs", "detectionRange", 5.0);
+
+        if (spider.tickCount % tickInterval != 0) return;
+
+        Player nearestPlayer = level.getNearestPlayer(spider, detectionRange);
         if (nearestPlayer != null) {
             BlockPos playerPos = nearestPlayer.blockPosition().below();
             RandomSource random = spider.getRandom();
-            double offsetX = (random.nextDouble() - 0.5) * 2;
-            double offsetZ = (random.nextDouble() - 0.5) * 2;
+            double spreadRadius = config.getDouble("spider_webs", "spreadRadius", 2.0);
+            double offsetX = (random.nextDouble() - 0.5) * spreadRadius;
+            double offsetZ = (random.nextDouble() - 0.5) * spreadRadius;
             BlockPos webPos = playerPos.offset((int) offsetX, 0, (int) offsetZ);
             BlockState current = level.getBlockState(webPos);
             if (current.isAir() && !level.getBlockState(webPos.above()).isSolid()) {
@@ -74,17 +72,25 @@ public class DifficultyEventHandler {
     @SubscribeEvent
     public static void onCobwebBreak(BlockEvent.BreakEvent event) {
         if (!DifficultyManager.getInstance().isFeatureEnabled(DifficultyFeature.COBWEB_SPAWN_SPIDERS)) return;
+        MixinConfigManager config = MixinConfigManager.getInstance();
+
         if (!event.getState().is(Blocks.COBWEB)) return;
         Level level = (Level) event.getLevel();
         if (level.isClientSide) return;
         BlockPos pos = event.getPos();
         RandomSource random = level.getRandom();
-        for (int i = 0; i < 2; i++) {
+
+        int spiderCount = config.getInt("cobweb_spawn_spiders", "spiderCount", 2);
+        int poisonDuration = config.getInt("cobweb_spawn_spiders", "poisonDuration", 600);
+        int poisonLevel = config.getInt("cobweb_spawn_spiders", "poisonLevel", 0);
+        double spawnSpread = config.getDouble("cobweb_spawn_spiders", "spawnSpread", 3.0);
+
+        for (int i = 0; i < spiderCount; i++) {
             CaveSpider spider = new CaveSpider(EntityType.CAVE_SPIDER, level);
-            double offsetX = (random.nextDouble() - 0.5) * 3;
-            double offsetZ = (random.nextDouble() - 0.5) * 3;
+            double offsetX = (random.nextDouble() - 0.5) * spawnSpread;
+            double offsetZ = (random.nextDouble() - 0.5) * spawnSpread;
             spider.moveTo(pos.getX() + 0.5 + offsetX, pos.getY(), pos.getZ() + 0.5 + offsetZ, 0, 0);
-            spider.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 600, 0));
+            spider.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, poisonDuration, poisonLevel));
             level.addFreshEntity(spider);
         }
     }
@@ -96,57 +102,92 @@ public class DifficultyEventHandler {
         Level level = player.level();
         if (level.isClientSide) return;
         DifficultyManager manager = DifficultyManager.getInstance();
-        if (manager.isFeatureEnabled(DifficultyFeature.PHANTOM_SCRAMBLE_INVENTORY)) scrambleInventory(player);
+        MixinConfigManager config = MixinConfigManager.getInstance();
+
+        if (manager.isFeatureEnabled(DifficultyFeature.PHANTOM_SCRAMBLE_INVENTORY)) {
+            int itemsToScramble = config.getInt("phantom_scramble_inventory", "itemsToScramble", 36);
+            scrambleInventory(player, itemsToScramble);
+        }
+
         if (manager.isFeatureEnabled(DifficultyFeature.PHANTOM_DROP_ARMOR) && !player.isCreative()) {
-            if (player.getRandom().nextFloat() < 0.30f) dropRandomArmor(player);
+            float dropChance = config.getFloat("phantom_drop_armor", "dropChance", 0.30f);
+            if (player.getRandom().nextFloat() < dropChance) dropRandomArmor(player);
         }
     }
 
     @SubscribeEvent
     public static void onDamage(LivingHurtEvent event) {
         DifficultyManager manager = DifficultyManager.getInstance();
+        MixinConfigManager config = MixinConfigManager.getInstance();
+
         if (manager.isFeatureEnabled(DifficultyFeature.TRIPLE_MOB_DAMAGE)) {
             if (event.getSource().getEntity() instanceof LivingEntity attacker && !(attacker instanceof Player)) {
-                event.setAmount(event.getAmount() * 3.0f);
+                float multiplier = config.getFloat("triple_mob_damage", "damageMultiplier", 3.0f);
+                event.setAmount(event.getAmount() * multiplier);
             }
         }
+
         if (manager.isFeatureEnabled(DifficultyFeature.TRIPLE_FALL_DAMAGE)) {
-            if (event.getSource().is(DamageTypes.FALL)) event.setAmount(event.getAmount() * 3.0f);
+            if (event.getSource().is(DamageTypes.FALL)) {
+                float multiplier = config.getFloat("triple_fall_damage", "damageMultiplier", 3.0f);
+                event.setAmount(event.getAmount() * multiplier);
+            }
         }
+
         if (manager.isFeatureEnabled(DifficultyFeature.TRIPLE_FIRE_DAMAGE)) {
-            if (event.getSource().is(DamageTypes.IN_FIRE) || event.getSource().is(DamageTypes.ON_FIRE) || event.getSource().is(DamageTypes.LAVA)) event.setAmount(event.getAmount() * 3.0f);
+            if (event.getSource().is(DamageTypes.IN_FIRE) || event.getSource().is(DamageTypes.ON_FIRE) || event.getSource().is(DamageTypes.LAVA)) {
+                float multiplier = config.getFloat("triple_fire_damage", "damageMultiplier", 3.0f);
+                event.setAmount(event.getAmount() * multiplier);
+            }
         }
+
         if (manager.isFeatureEnabled(DifficultyFeature.SILVERFISH_INSANE_DAMAGE)) {
-            if (event.getSource().getEntity() instanceof Silverfish) event.setAmount(Float.MAX_VALUE);
+            if (event.getSource().getEntity() instanceof Silverfish) {
+                float damage = config.getFloat("silverfish_insane_damage", "damage", Float.MAX_VALUE);
+                event.setAmount(damage);
+            }
         }
+
         if (manager.isFeatureEnabled(DifficultyFeature.ENDERMITE_INSANE_DAMAGE)) {
-            if (event.getSource().getEntity() instanceof Endermite) event.setAmount(Float.MAX_VALUE);
+            if (event.getSource().getEntity() instanceof Endermite) {
+                float damage = config.getFloat("endermite_insane_damage", "damage", Float.MAX_VALUE);
+                event.setAmount(damage);
+            }
         }
+
         if (event.getEntity() instanceof Player player) {
             if (event.getSource().getDirectEntity() instanceof Arrow arrow) {
-                if (arrow.getOwner() instanceof Skeleton skeletonOwner || arrow.getOwner() instanceof WitherSkeleton witherOwner) {
-                    DifficultyFeature df = DifficultyFeature.SKELETON_ALL_EFFECTS;
-                    DifficultyFeature ds = DifficultyFeature.SKELETON_RANDOM_EFFECTS;
-                    if (manager.isFeatureEnabled(df)) {
-                        player.addEffect(new MobEffectInstance(MobEffects.POISON, 200, 1));
-                        player.addEffect(new MobEffectInstance(MobEffects.WITHER, 200, 1));
-                        player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 200, 1));
-                        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 200, 1));
-                        player.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 200, 1));
-                    } else if (manager.isFeatureEnabled(ds)) {
+                if (arrow.getOwner() instanceof Skeleton || arrow.getOwner() instanceof WitherSkeleton) {
+                    if (manager.isFeatureEnabled(DifficultyFeature.SKELETON_ALL_EFFECTS)) {
+                        int duration = config.getInt("skeleton_all_effects", "effectDuration", 200);
+                        int level = config.getInt("skeleton_all_effects", "effectLevel", 1);
+                        player.addEffect(new MobEffectInstance(MobEffects.POISON, duration, level));
+                        player.addEffect(new MobEffectInstance(MobEffects.WITHER, duration, level));
+                        player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, duration, level));
+                        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, duration, level));
+                        player.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, duration, level));
+                    } else if (manager.isFeatureEnabled(DifficultyFeature.SKELETON_RANDOM_EFFECTS)) {
+                        int duration = config.getInt("skeleton_random_effects", "effectDuration", 200);
+                        int effectLevel = config.getInt("skeleton_random_effects", "effectLevel", 1);
                         int randomIndex = player.getRandom().nextInt(4);
-                        switch (randomIndex) {
-                            case 0 -> player.addEffect(new MobEffectInstance(MobEffects.POISON, 200, 1));
-                            case 1 -> player.addEffect(new MobEffectInstance(MobEffects.WITHER, 200, 1));
-                            case 2 -> player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 200, 1));
-                            case 3 -> player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 200, 1));
-                        }
+                        MobEffectInstance effect = switch (randomIndex) {
+                            case 0 -> new MobEffectInstance(MobEffects.POISON, duration, effectLevel);
+                            case 1 -> new MobEffectInstance(MobEffects.WITHER, duration, effectLevel);
+                            case 2 -> new MobEffectInstance(MobEffects.WEAKNESS, duration, effectLevel);
+                            default -> new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, duration, effectLevel);
+                        };
+                        player.addEffect(effect);
                     }
                 }
             }
         }
+
         if (manager.isFeatureEnabled(DifficultyFeature.HUSK_HUNGER_DRAIN) && event.getSource().getEntity() instanceof Husk) {
-            if (event.getEntity() instanceof Player player) player.addEffect(new MobEffectInstance(MobEffects.HUNGER, 300, 2));
+            if (event.getEntity() instanceof Player player) {
+                int duration = config.getInt("husk_hunger_drain", "duration", 300);
+                int hungerLevel = config.getInt("husk_hunger_drain", "hungerLevel", 2);
+                player.addEffect(new MobEffectInstance(MobEffects.HUNGER, duration, hungerLevel));
+            }
         }
     }
 
@@ -156,24 +197,36 @@ public class DifficultyEventHandler {
         if (entity.level().isClientSide) return;
         Level level = entity.level();
         DifficultyManager manager = DifficultyManager.getInstance();
+        MixinConfigManager config = MixinConfigManager.getInstance();
 
         if (manager.isFeatureEnabled(DifficultyFeature.INFINITE_FIRE)) {
-            if (entity.isOnFire() && !entity.isInWaterOrBubble()) entity.setRemainingFireTicks(200);
+            if (entity.isOnFire() && !entity.isInWaterOrBubble()) {
+                int fireTicks = config.getInt("infinite_fire", "fireTicks", 200);
+                entity.setRemainingFireTicks(fireTicks);
+            }
         }
 
         if (manager.isFeatureEnabled(DifficultyFeature.ACID_RAIN)) {
             if (entity instanceof Player player && level.isRaining() && level.canSeeSky(player.blockPosition())) {
-                if (player.tickCount % 20 == 0) player.hurt(level.damageSources().magic(), 1.0f);
+                int tickInterval = config.getInt("acid_rain", "tickInterval", 20);
+                float damage = config.getFloat("acid_rain", "damage", 1.0f);
+                if (player.tickCount % tickInterval == 0) {
+                    player.hurt(level.damageSources().magic(), damage);
+                }
             }
         }
 
         if (entity instanceof Zombie zombie && manager.isFeatureEnabled(DifficultyFeature.ZOMBIE_CALL_HORDE)) {
-            if (zombie.getTarget() instanceof Player && zombie.tickCount % 200 == 0) {
-                if (zombie.getRandom().nextFloat() < 0.30f) {
-                    for (int i = 0; i < 3; i++) {
+            int checkInterval = config.getInt("zombie_call_horde", "checkInterval", 200);
+            if (zombie.getTarget() instanceof Player && zombie.tickCount % checkInterval == 0) {
+                float spawnChance = config.getFloat("zombie_call_horde", "spawnChance", 0.30f);
+                if (zombie.getRandom().nextFloat() < spawnChance) {
+                    int zombieCount = config.getInt("zombie_call_horde", "zombieCount", 3);
+                    double spawnRadius = config.getDouble("zombie_call_horde", "spawnRadius", 4.0);
+                    for (int i = 0; i < zombieCount; i++) {
                         Zombie newZombie = new Zombie(EntityType.ZOMBIE, level);
-                        double offsetX = (zombie.getRandom().nextDouble() - 0.5) * 4;
-                        double offsetZ = (zombie.getRandom().nextDouble() - 0.5) * 4;
+                        double offsetX = (zombie.getRandom().nextDouble() - 0.5) * spawnRadius * 2;
+                        double offsetZ = (zombie.getRandom().nextDouble() - 0.5) * spawnRadius * 2;
                         newZombie.moveTo(zombie.getX() + offsetX, zombie.getY(), zombie.getZ() + offsetZ, 0, 0);
                         newZombie.setTarget(zombie.getTarget());
                         level.addFreshEntity(newZombie);
@@ -183,17 +236,28 @@ public class DifficultyEventHandler {
         }
 
         if (entity instanceof Vindicator vindicator && manager.isFeatureEnabled(DifficultyFeature.VINDICATOR_SPEED_BOOST)) {
-            if (vindicator.getTarget() != null && vindicator.tickCount % 20 == 0 && !vindicator.hasEffect(MobEffects.MOVEMENT_SPEED))
-                vindicator.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 40, 1));
+            int checkInterval = config.getInt("vindicator_speed_boost", "checkInterval", 20);
+            int effectDuration = config.getInt("vindicator_speed_boost", "effectDuration", 40);
+            int speedLevel = config.getInt("vindicator_speed_boost", "speedLevel", 1);
+            if (vindicator.getTarget() != null && vindicator.tickCount % checkInterval == 0 && !vindicator.hasEffect(MobEffects.MOVEMENT_SPEED)) {
+                vindicator.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, effectDuration, speedLevel));
+            }
         }
 
         if (entity instanceof Witch witch && manager.isFeatureEnabled(DifficultyFeature.WITCH_HEAL_MOBS)) {
-            if (witch.tickCount % 60 == 0) {
-                List<Mob> nearbyMobs = level.getEntitiesOfClass(Mob.class, witch.getBoundingBox().inflate(8.0));
+            int healInterval = config.getInt("witch_heal_mobs", "healInterval", 60);
+            double healRange = config.getDouble("witch_heal_mobs", "healRange", 8.0);
+            int regenDuration = config.getInt("witch_heal_mobs", "regenDuration", 100);
+            int regenLevel = config.getInt("witch_heal_mobs", "regenLevel", 0);
+            int strengthDuration = config.getInt("witch_heal_mobs", "strengthDuration", 200);
+            int strengthLevel = config.getInt("witch_heal_mobs", "strengthLevel", 0);
+
+            if (witch.tickCount % healInterval == 0) {
+                List<Mob> nearbyMobs = level.getEntitiesOfClass(Mob.class, witch.getBoundingBox().inflate(healRange));
                 for (Mob mob : nearbyMobs) {
                     if (mob != witch && mob instanceof Monster) {
-                        mob.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 100, 0));
-                        mob.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 200, 0));
+                        mob.addEffect(new MobEffectInstance(MobEffects.REGENERATION, regenDuration, regenLevel));
+                        mob.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, strengthDuration, strengthLevel));
                     }
                 }
             }
@@ -212,22 +276,43 @@ public class DifficultyEventHandler {
         Level level = witch.level();
         if (level.isClientSide) return;
         DifficultyManager manager = DifficultyManager.getInstance();
+        MixinConfigManager config = MixinConfigManager.getInstance();
+
         if (manager.isFeatureEnabled(DifficultyFeature.WITCH_TELEPORT_ESCAPE) && event.getSource().getEntity() instanceof Player) {
-            double x = witch.getX() + (witch.getRandom().nextDouble() - 0.5) * 16;
-            double y = witch.getY();
-            double z = witch.getZ() + (witch.getRandom().nextDouble() - 0.5) * 16;
-            witch.teleportTo(x, y, z);
+            float teleportChance = config.getFloat("witch_teleport_escape", "teleportChance", 1.0f);
+            if (witch.getRandom().nextFloat() < teleportChance) {
+                double teleportRange = config.getDouble("witch_teleport_escape", "teleportRange", 16.0);
+                double x = witch.getX() + (witch.getRandom().nextDouble() - 0.5) * teleportRange * 2;
+                double y = witch.getY();
+                double z = witch.getZ() + (witch.getRandom().nextDouble() - 0.5) * teleportRange * 2;
+                witch.teleportTo(x, y, z);
+            }
         }
-        if (manager.isFeatureEnabled(DifficultyFeature.WITCH_TOTEM_USE) && witch.getHealth() < 10.0f && !witch.hasEffect(MobEffects.REGENERATION)) {
-            witch.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 900, 1));
-            witch.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 100, 1));
-            witch.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 800, 0));
+
+        if (manager.isFeatureEnabled(DifficultyFeature.WITCH_TOTEM_USE)) {
+            float healthThreshold = config.getFloat("witch_totem_use", "healthThreshold", 10.0f);
+            if (witch.getHealth() < healthThreshold && !witch.hasEffect(MobEffects.REGENERATION)) {
+                int regenDuration = config.getInt("witch_totem_use", "regenDuration", 900);
+                int regenLevel = config.getInt("witch_totem_use", "regenLevel", 1);
+                int absorptionDuration = config.getInt("witch_totem_use", "absorptionDuration", 100);
+                int fireResDuration = config.getInt("witch_totem_use", "fireResDuration", 800);
+
+                witch.addEffect(new MobEffectInstance(MobEffects.REGENERATION, regenDuration, regenLevel));
+                witch.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, absorptionDuration, 1));
+                witch.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, fireResDuration, 0));
+            }
         }
-        if (manager.isFeatureEnabled(DifficultyFeature.WITCH_ENDER_PEARL_ESCAPE) && witch.getHealth() < 15.0f && witch.getRandom().nextFloat() < 0.40f) {
-            double x = witch.getX() + (witch.getRandom().nextDouble() - 0.5) * 16;
-            double y = Math.max(witch.getY(), level.getMinBuildHeight() + 1);
-            double z = witch.getZ() + (witch.getRandom().nextDouble() - 0.5) * 16;
-            witch.teleportTo(x, y, z);
+
+        if (manager.isFeatureEnabled(DifficultyFeature.WITCH_ENDER_PEARL_ESCAPE)) {
+            float healthThreshold = config.getFloat("witch_ender_pearl_escape", "healthThreshold", 15.0f);
+            float escapeChance = config.getFloat("witch_ender_pearl_escape", "escapeChance", 0.40f);
+            if (witch.getHealth() < healthThreshold && witch.getRandom().nextFloat() < escapeChance) {
+                double teleportRange = config.getDouble("witch_ender_pearl_escape", "teleportRange", 16.0);
+                double x = witch.getX() + (witch.getRandom().nextDouble() - 0.5) * teleportRange * 2;
+                double y = Math.max(witch.getY(), level.getMinBuildHeight() + 1);
+                double z = witch.getZ() + (witch.getRandom().nextDouble() - 0.5) * teleportRange * 2;
+                witch.teleportTo(x, y, z);
+            }
         }
     }
 
@@ -237,8 +322,6 @@ public class DifficultyEventHandler {
         if (!(event.getEntity() instanceof Player) || !(event.getTarget() instanceof Villager)) return;
 
         Player player = (Player) event.getEntity();
-        Villager villager = (Villager) event.getTarget();
-
         ItemStack held = player.getMainHandItem();
         if (held.is(Items.WHEAT)) {
             event.setCanceled(true);
@@ -252,24 +335,26 @@ public class DifficultyEventHandler {
         if (!(event.getEntity() instanceof Player) || !(event.getTarget() instanceof Villager)) return;
 
         Player player = (Player) event.getEntity();
-        Villager villager = (Villager) event.getTarget();
-
         Level level = player.level();
         if (level.isClientSide) return;
+        MixinConfigManager config = MixinConfigManager.getInstance();
 
-        if (player.getRandom().nextFloat() < 0.05f) {
-            player.addEffect(new MobEffectInstance(MobEffects.BAD_OMEN, 6000, 0));
+        float raidChance = config.getFloat("villager_raid_trigger", "raidChance", 0.05f);
+        int omenDuration = config.getInt("villager_raid_trigger", "omenDuration", 6000);
+
+        if (player.getRandom().nextFloat() < raidChance) {
+            player.addEffect(new MobEffectInstance(MobEffects.BAD_OMEN, omenDuration, 0));
             player.displayClientMessage(Component.literal("Efecto Bad Omen aplicado por comerciar. ¡Prepárate para una raid!"), true);
         }
     }
 
-
-    private static void scrambleInventory(Player player) {
+    private static void scrambleInventory(Player player, int slots) {
         List<ItemStack> items = new ArrayList<>();
-        for (int i = 0; i < 36; i++) items.add(player.getInventory().getItem(i).copy());
+        int maxSlots = Math.min(slots, 36);
+        for (int i = 0; i < maxSlots; i++) items.add(player.getInventory().getItem(i).copy());
         java.util.Random random = new java.util.Random(player.getRandom().nextLong());
         Collections.shuffle(items, random);
-        for (int i = 0; i < 36; i++) player.getInventory().setItem(i, items.get(i));
+        for (int i = 0; i < maxSlots; i++) player.getInventory().setItem(i, items.get(i));
     }
 
     private static void dropRandomArmor(Player player) {

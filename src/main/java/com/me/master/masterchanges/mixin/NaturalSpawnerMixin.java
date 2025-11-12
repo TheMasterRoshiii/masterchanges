@@ -12,12 +12,15 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import com.me.master.masterchanges.config.MixinConfigManager;
 
 @Mixin(targets = "net.minecraft.world.level.NaturalSpawner$SpawnState")
 public class NaturalSpawnerMixin {
 
     @Inject(method = "canSpawn", at = @At("HEAD"), cancellable = true)
     private void onCanSpawn(CallbackInfoReturnable<Boolean> cir) {
+        MixinConfigManager config = MixinConfigManager.getInstance();
+
         DifficultyManager manager = DifficultyManager.getInstance();
 
         if (manager.isFeatureEnabled(DifficultyFeature.SPAWN_ON_BUTTONS) ||

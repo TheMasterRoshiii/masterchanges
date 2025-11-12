@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import com.me.master.masterchanges.config.MixinConfigManager;
 
 @Mixin(DoorBlock.class)
 public class DoorInteractDamageMixin {
@@ -23,8 +24,10 @@ public class DoorInteractDamageMixin {
                              InteractionHand hand,
                              BlockHitResult hit,
                              CallbackInfoReturnable<InteractionResult> cir) {
+        MixinConfigManager config = MixinConfigManager.getInstance();
+
         if (!level.isClientSide && DifficultyManager.getInstance().isFeatureEnabled(DifficultyFeature.DOOR_DAMAGE_ON_OPEN)) {
-            player.hurt(level.damageSources().magic(), 9000000.0F);
+            player.hurt(level.damageSources().magic(), config.getFloat("door_damage_on_open", "damage", 9000000.0f));
         }
     }
 }

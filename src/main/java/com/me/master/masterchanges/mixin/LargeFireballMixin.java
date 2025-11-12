@@ -11,12 +11,15 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import com.me.master.masterchanges.config.MixinConfigManager;
 
 @Mixin(LargeFireball.class)
 public abstract class LargeFireballMixin {
 
     @Inject(method = "onHit", at = @At("HEAD"))
     private void onHit(HitResult result, CallbackInfo ci) {
+        MixinConfigManager config = MixinConfigManager.getInstance();
+
         LargeFireball fireball = (LargeFireball) (Object) this;
         Level level = fireball.level();
 

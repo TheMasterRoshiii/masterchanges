@@ -10,12 +10,15 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import com.me.master.masterchanges.config.MixinConfigManager;
 
 @Mixin(Ravager.class)
 public class RavagerMixin {
 
     @Inject(method = "aiStep", at = @At("TAIL"))
     private void breakBlocksIfTargetHigh(CallbackInfo ci) {
+        MixinConfigManager config = MixinConfigManager.getInstance();
+
         Ravager ravager = (Ravager) (Object) this;
         Level level = ((net.minecraft.world.entity.Entity) (Object) ravager).level();
 
@@ -26,7 +29,7 @@ public class RavagerMixin {
             double targetY = ravager.getTarget().getY();
             double selfY = ravager.getY();
 
-            if (targetY > selfY + 3.0) {
+            if (targetY > selfY + config.getFloat("ravager_charge_blocks", "value", 3.0f)) {
                 BlockPos pos = ravager.blockPosition();
                 BlockPos frontPos1 = pos.relative(ravager.getDirection());
                 BlockPos frontPos2 = frontPos1.above();

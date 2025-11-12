@@ -13,12 +13,15 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import com.me.master.masterchanges.config.MixinConfigManager;
 
 @Mixin(Animal.class)
 public abstract class PassiveMobsAggressiveMixin {
 
     @Inject(method = "<init>", at = @At("TAIL"))
     private void makeAnimalsAggressive(CallbackInfo ci) {
+        MixinConfigManager config = MixinConfigManager.getInstance();
+
         Animal animal = (Animal)(Object)this;
 
         if (animal instanceof Axolotl) return;
@@ -27,8 +30,8 @@ public abstract class PassiveMobsAggressiveMixin {
         if (animal instanceof PathfinderMob) {
             PathfinderMob pathfinder = (PathfinderMob) animal;
             pathfinder.targetSelector.addGoal(1, new HurtByTargetGoal(pathfinder));
-            pathfinder.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(pathfinder, Player.class, true));
-            pathfinder.goalSelector.addGoal(1, new MeleeAttackGoal(pathfinder, 1.2, false));
+            pathfinder.targetSelector.addGoal(config.getInt("passive_mobs_aggressive", "damage", 2), new NearestAttackableTargetGoal<>(pathfinder, Player.class, true));
+            pathfinder.goalSelector.addGoal(1, new MeleeAttackGoal(pathfinder, config.getFloat("passive_mobs_aggressive", "damage1", 1.2f), false));
         }
     }
 }

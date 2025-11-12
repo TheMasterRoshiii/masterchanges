@@ -14,14 +14,17 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import com.me.master.masterchanges.config.MixinConfigManager;
 
 @Mixin(CactusBlock.class)
 public class CactusMixin {
     @Inject(method = "entityInside", at = @At("HEAD"), cancellable = true)
     private void insaneCactusDamage(BlockState state, Level level, BlockPos pos, Entity entity, CallbackInfo ci) {
+        MixinConfigManager config = MixinConfigManager.getInstance();
+
         if (DifficultyManager.getInstance().isFeatureEnabled(DifficultyFeature.CACTUS_INSANE_DAMAGE)) {
             if (entity instanceof LivingEntity living) {
-                entity.hurt(level.damageSources().cactus(), 9000000.0F);
+                entity.hurt(level.damageSources().cactus(), config.getFloat("cactus_insane_damage", "damage", 9000000.0f));
 
                 for (EquipmentSlot slot : EquipmentSlot.values()) {
                     if (slot.getType() == EquipmentSlot.Type.ARMOR) {

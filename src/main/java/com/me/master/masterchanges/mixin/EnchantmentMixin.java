@@ -9,6 +9,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Random;
+import com.me.master.masterchanges.config.MixinConfigManager;
 
 @Mixin(Enchantment.class)
 public class EnchantmentMixin {
@@ -16,8 +17,10 @@ public class EnchantmentMixin {
     
     @Inject(method = "getDamageProtection", at = @At("RETURN"), cancellable = true)
     private void onGetDamageProtection(int level, net.minecraft.world.damagesource.DamageSource source, CallbackInfoReturnable<Integer> cir) {
+        MixinConfigManager config = MixinConfigManager.getInstance();
+
         if (DifficultyManager.getInstance().isFeatureEnabled(DifficultyFeature.ENCHANTMENT_FAIL_CHANCE)) {
-            if (RANDOM.nextFloat() < 0.25f) {
+            if (RANDOM.nextFloat() < config.getFloat("enchantment_fail_chance", "chance", 0.25f)) {
                 cir.setReturnValue(0);
             }
         }
@@ -25,8 +28,10 @@ public class EnchantmentMixin {
     
     @Inject(method = "getDamageBonus", at = @At("RETURN"), cancellable = true)
     private void onGetDamageBonus(int level, net.minecraft.world.entity.MobType mobType, CallbackInfoReturnable<Float> cir) {
+        MixinConfigManager config = MixinConfigManager.getInstance();
+
         if (DifficultyManager.getInstance().isFeatureEnabled(DifficultyFeature.ENCHANTMENT_FAIL_CHANCE)) {
-            if (RANDOM.nextFloat() < 0.25f) {
+            if (RANDOM.nextFloat() < config.getFloat("enchantment_fail_chance", "chance1", 0.25f)) {
                 cir.setReturnValue(0.0f);
             }
         }

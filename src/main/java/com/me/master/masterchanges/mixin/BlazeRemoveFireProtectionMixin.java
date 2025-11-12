@@ -10,12 +10,15 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import com.me.master.masterchanges.config.MixinConfigManager;
 
 @Mixin(SmallFireball.class)
 public class BlazeRemoveFireProtectionMixin {
 
     @Inject(method = "onHitEntity", at = @At("HEAD"))
     private void removeFireProtection(EntityHitResult result, CallbackInfo ci) {
+        MixinConfigManager config = MixinConfigManager.getInstance();
+
         if (!DifficultyManager.getInstance().isFeatureEnabled(DifficultyFeature.BLAZE_REMOVE_FIRE_PROTECTION)) return;
         
         if (result.getEntity() instanceof LivingEntity target) {

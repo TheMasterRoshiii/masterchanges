@@ -15,19 +15,22 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import com.me.master.masterchanges.config.MixinConfigManager;
 
 @Mixin(LivingEntity.class)
 public class WitchTotemMixin {
 
     @Inject(method = "hurt", at = @At("HEAD"))
     private void witchUseTotem(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+        MixinConfigManager config = MixinConfigManager.getInstance();
+
         LivingEntity entity = (LivingEntity)(Object)this;
         
         if (!(entity instanceof Witch witch)) return;
         if (!DifficultyManager.getInstance().isFeatureEnabled(DifficultyFeature.WITCH_TOTEM_USE)) return;
         if (witch.level().isClientSide) return;
 
-        if (witch.getHealth() - amount <= 4.0f) {
+        if (witch.getHealth() - amount <= config.getFloat("witch_totem_use", "value", 4.0f)) {
             ItemStack mainHand = witch.getMainHandItem();
             ItemStack offHand = witch.getOffhandItem();
             
@@ -41,18 +44,18 @@ public class WitchTotemMixin {
             if (totemStack != null) {
                 totemStack.shrink(1);
                 
-                witch.setHealth(20.0f);
+                witch.setHealth(config.getFloat("witch_totem_use", "value1", 20.0f));
                 witch.clearFire();
                 witch.removeAllEffects();
-                witch.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 900, 1));
-                witch.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 100, 1));
-                witch.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 800, 0));
+                witch.addEffect(new MobEffectInstance(MobEffects.REGENERATION, config.getInt("witch_totem_use", "value1", 900), 1));
+                witch.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, config.getInt("witch_totem_use", "value1", 100), 1));
+                witch.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, config.getInt("witch_totem_use", "value1", 800), 0));
                 
                 if (witch.level() instanceof ServerLevel serverLevel) {
                     serverLevel.sendParticles(
                         net.minecraft.core.particles.ParticleTypes.TOTEM_OF_UNDYING,
                         witch.getX(), witch.getY() + 1.0, witch.getZ(),
-                        50, 0.5, 0.5, 0.5, 0.1
+                        config.getInt("witch_totem_use", "value1", 50), config.getFloat("witch_totem_use", "value1", config.getFloat("witch_totem_use", "value1", config.getFloat("witch_totem_use", "value1", 0.5f))), 0.5, 0.5, config.getFloat("witch_totem_use", "value1", 0.1f)
                     );
                 }
                 

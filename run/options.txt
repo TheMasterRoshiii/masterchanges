@@ -15,8 +15,8 @@ reducedDebugInfo:true
 showSubtitles:false
 directionalAudio:false
 touchscreen:false
-fullscreen:true
-bobView:true
+fullscreen:false
+bobView:false
 toggleCrouch:false
 toggleSprint:false
 darkMojangStudiosBackground:false
@@ -34,7 +34,7 @@ gamma:1.0
 renderDistance:2
 simulationDistance:5
 entityDistanceScaling:0.5
-guiScale:3
+guiScale:2
 particles:1
 maxFps:260
 graphicsMode:0

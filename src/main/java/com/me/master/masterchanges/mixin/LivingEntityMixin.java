@@ -12,6 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Random;
+import com.me.master.masterchanges.config.MixinConfigManager;
 
 @Mixin(LivingEntity.class)
 public class LivingEntityMixin {
@@ -19,6 +20,8 @@ public class LivingEntityMixin {
 
     @Inject(method = "checkTotemDeathProtection", at = @At("HEAD"), cancellable = true)
     private void onTotemCheck(net.minecraft.world.damagesource.DamageSource damageSource, CallbackInfoReturnable<Boolean> cir) {
+        MixinConfigManager config = MixinConfigManager.getInstance();
+
         if (DifficultyManager.getInstance().isFeatureEnabled(DifficultyFeature.TOTEM_PROBABILITY)) {
             LivingEntity entity = (LivingEntity) (Object) this;
 
@@ -32,7 +35,7 @@ public class LivingEntityMixin {
             }
 
             if (totemStack != null) {
-                if (RANDOM.nextFloat() < 0.50f) {
+                if (RANDOM.nextFloat() < config.getFloat("totem_probability", "chance", 0.5f)) {
                     cir.setReturnValue(false);
                 }
             }
@@ -41,6 +44,8 @@ public class LivingEntityMixin {
 
     @Inject(method = "canBreatheUnderwater", at = @At("HEAD"), cancellable = true)
     private void onCanBreatheUnderwater(CallbackInfoReturnable<Boolean> cir) {
+        MixinConfigManager config = MixinConfigManager.getInstance();
+
         if (DifficultyManager.getInstance().isFeatureEnabled(DifficultyFeature.NO_INHALATION)) {
             cir.setReturnValue(false);
         }
@@ -48,6 +53,8 @@ public class LivingEntityMixin {
 
     @Inject(method = "aiStep", at = @At("HEAD"))
     private void onAiStep(CallbackInfo ci) {
+        MixinConfigManager config = MixinConfigManager.getInstance();
+
         if (!DifficultyManager.getInstance().isFeatureEnabled(DifficultyFeature.TRIPLE_DROWNING_SPEED)) {
             return;
         }
@@ -56,7 +63,7 @@ public class LivingEntityMixin {
         if (entity.isEyeInFluid(net.minecraft.tags.FluidTags.WATER)) {
             int air = entity.getAirSupply();
             if (air > 0) {
-                entity.setAirSupply(Math.max(0, air - 2));
+                entity.setAirSupply(Math.max(0, air - config.getInt("totem_probability", "value", 2)));
             }
         }
     }

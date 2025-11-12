@@ -51,7 +51,8 @@
     "ButtonInteractDamageMixin",
     "BlazeDragonFireballMixin",
     "WitchAbilitiesMixin",
-    "WitchTotemMixin"
+    "WitchTotemMixin",
+    "FireworkRocketMixin"
 
   ],
   "client": [

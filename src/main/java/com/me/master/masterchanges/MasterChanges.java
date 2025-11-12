@@ -1,7 +1,9 @@
 package com.me.master.masterchanges;
 
 import com.me.master.masterchanges.command.DifficultyCommand;
+import com.me.master.masterchanges.command.MegaPanelCommand;
 import com.me.master.masterchanges.item.ModItems;
+import com.me.master.masterchanges.network.ModNetworking;
 import com.mojang.logging.LogUtils;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
@@ -22,13 +24,15 @@ public class MasterChanges {
     public MasterChanges() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         ModItems.ITEMS.register(modEventBus);
-
         modEventBus.addListener(this::commonSetup);
-
         MinecraftForge.EVENT_BUS.register(this);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
+        event.enqueueWork(() -> {
+            ModNetworking.register();
+            LOGGER.info("MasterChanges networking registered");
+        });
         LOGGER.info("MasterChanges common setup");
     }
 
@@ -40,7 +44,8 @@ public class MasterChanges {
     @SubscribeEvent
     public void onCommandRegister(RegisterCommandsEvent event) {
         DifficultyCommand.register(event.getDispatcher());
-        LOGGER.info("Comandos de dificultad registrados");
+        MegaPanelCommand.register(event.getDispatcher());
+        LOGGER.info("Comandos registrados");
     }
 
     @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD)

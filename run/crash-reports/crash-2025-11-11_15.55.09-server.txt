@@ -1,0 +1,99 @@
+---- Minecraft Crash Report ----
+// On the bright side, I bought you a teddy bear!
+
+Time: 2025-11-11 15:55:09
+Description: Exception in server tick loop
+
+java.lang.ExceptionInInitializerError: null
+	at com.me.master.masterchanges.command.MegaPanelCommand.lambda$register$0(MegaPanelCommand.java:19) ~[%23186!/:?] {re:classloading}
+	at com.mojang.brigadier.tree.CommandNode.canUse(CommandNode.java:65) ~[brigadier-1.1.8.jar%23123!/:?] {}
+	at net.minecraftforge.server.command.CommandHelper.mergeCommandNode(CommandHelper.java:50) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23180%23187!/:?] {re:classloading}
+	at net.minecraft.commands.Commands.sendCommands(Commands.java:314) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading}
+	at net.minecraft.server.players.PlayerList.sendPlayerPermissionLevel(PlayerList.java:606) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading}
+	at net.minecraft.server.players.PlayerList.sendPlayerPermissionLevel(PlayerList.java:499) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading}
+	at net.minecraft.server.players.PlayerList.placeNewPlayer(PlayerList.java:191) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading}
+	at net.minecraft.server.network.ServerLoginPacketListenerImpl.placeNewPlayer(ServerLoginPacketListenerImpl.java:139) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.server.network.ServerLoginPacketListenerImpl.handleAcceptedLogin(ServerLoginPacketListenerImpl.java:126) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.server.network.ServerLoginPacketListenerImpl.tick(ServerLoginPacketListenerImpl.java:70) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.network.Connection.tick(Connection.java:263) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading}
+	at net.minecraft.server.network.ServerConnectionListener.tick(ServerConnectionListener.java:142) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading}
+	at net.minecraft.server.MinecraftServer.tickChildren(MinecraftServer.java:907) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.server.MinecraftServer.tickServer(MinecraftServer.java:814) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.client.server.IntegratedServer.tickServer(IntegratedServer.java:89) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading,pl:runtimedistcleaner:A}
+	at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:661) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.server.MinecraftServer.lambda$spin$2(MinecraftServer.java:251) ~[forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/:?] {re:classloading,pl:accesstransformer:B}
+	at java.lang.Thread.run(Thread.java:840) ~[?:?] {}
+Caused by: java.lang.NumberFormatException: Error at index 0 in: "TU"
+	at java.lang.NumberFormatException.forCharSequence(NumberFormatException.java:83) ~[?:?] {}
+	at java.lang.Long.parseLong(Long.java:794) ~[?:?] {}
+	at java.util.UUID.fromString1(UUID.java:283) ~[?:?] {}
+	at java.util.UUID.fromString(UUID.java:258) ~[?:?] {}
+	at com.me.master.masterchanges.config.MixinConfigManager.<clinit>(MixinConfigManager.java:11) ~[%23186!/:?] {re:classloading}
+	... 18 more
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- System Details --
+Details:
+	Minecraft Version: 1.20.1
+	Minecraft Version ID: 1.20.1
+	Operating System: Linux (amd64) version 6.17.7-200.fc42.x86_64
+	Java Version: 17.0.17, Eclipse Adoptium
+	Java VM Version: OpenJDK 64-Bit Server VM (mixed mode, sharing), Eclipse Adoptium
+	Memory: 753532008 bytes (718 MiB) / 1804599296 bytes (1721 MiB) up to 2034237440 bytes (1940 MiB)
+	CPUs: 4
+	Processor Vendor: GenuineIntel
+	Processor Name: Intel(R) Pentium(R) CPU 6405U @ 2.40GHz
+	Identifier: Intel64 Family 6 Model 142 Stepping 12
+	Microarchitecture: Whiskey Lake
+	Frequency (GHz): 2.40
+	Number of physical packages: 1
+	Number of physical CPUs: 2
+	Number of logical CPUs: 4
+	Graphics card #0 name: Comet Lake-U GT2 [UHD Graphics 620]
+	Graphics card #0 vendor: Intel Corporation (0x8086)
+	Graphics card #0 VRAM (MB): 256.00
+	Graphics card #0 deviceId: 0x9b21
+	Graphics card #0 versionInfo: unknown
+	Virtual memory max (MB): 22308.11
+	Virtual memory used (MB): 11715.41
+	Swap memory total (MB): 18432.00
+	Swap memory used (MB): 4765.34
+	JVM Flags: 0 total; 
+	Server Running: true
+	Player Count: 0 / 8; []
+	Data Packs: vanilla, mod:forge, mod:masterchanges, mod:geckolib, mod:rubidium
+	Enabled Feature Flags: minecraft:vanilla
+	World Generation: Stable
+	Type: Integrated Server (map_client.txt)
+	Is Modded: Definitely; Client brand changed to 'forge'; Server brand changed to 'forge'
+	Launched Version: MOD_DEV
+	ModLauncher: 10.0.9+10.0.9+main.dcd20f30
+	ModLauncher launch target: forgeclientuserdev
+	ModLauncher naming: mcp
+	ModLauncher services: 
+		mixin-0.8.5.jar mixin PLUGINSERVICE 
+		eventbus-6.0.5.jar eventbus PLUGINSERVICE 
+		fmlloader-1.20.1-47.4.8.jar slf4jfixer PLUGINSERVICE 
+		fmlloader-1.20.1-47.4.8.jar object_holder_definalize PLUGINSERVICE 
+		fmlloader-1.20.1-47.4.8.jar runtime_enum_extender PLUGINSERVICE 
+		fmlloader-1.20.1-47.4.8.jar capability_token_subclass PLUGINSERVICE 
+		accesstransformers-8.0.4.jar accesstransformer PLUGINSERVICE 
+		fmlloader-1.20.1-47.4.8.jar runtimedistcleaner PLUGINSERVICE 
+		modlauncher-10.0.9.jar mixin TRANSFORMATIONSERVICE 
+		modlauncher-10.0.9.jar fml TRANSFORMATIONSERVICE 
+	FML Language Providers: 
+		minecraft@1.0
+		lowcodefml@null
+		javafml@null
+	Mod List: 
+		forge-1.20.1-47.4.8_mapped_official_1.20.1.jar    |Minecraft                     |minecraft                     |1.20.1              |DONE      |Manifest: a1:d4:5e:04:4f:d3:d6:e0:7b:37:97:cf:77:b0:de:ad:4a:47:ce:8c:96:49:5f:0a:cf:8c:ae:b2:6d:4b:8a:3f
+		                                                  |Forge                         |forge                         |47.4.8              |DONE      |Manifest: NOSIGNATURE
+		rubidium-0.7.1_mapped_official_1.20.1.jar         |Rubidium                      |rubidium                      |0.7.1               |DONE      |Manifest: NOSIGNATURE
+		geckolib-forge-1.20.1-4.7_mapped_official_1.20.1.j|GeckoLib 4                    |geckolib                      |4.7                 |DONE      |Manifest: NOSIGNATURE
+		main                                              |MasterChanges                 |masterchanges                 |1.0.0-Forge-1.20.1  |DONE      |Manifest: NOSIGNATURE
+	Crash Report UUID: 90dc3c56-d1af-438e-a5e1-1c84e3ad3a05
+	FML: 47.4
+	Forge: net.minecraftforge:47.4.8

@@ -69,10 +69,12 @@
   "minecraft:adventure/kill_all_mobs": {
     "criteria": {
       "minecraft:blaze": "2025-11-08 12:33:37 -0700",
+      "minecraft:pillager": "2025-11-11 16:24:21 -0700",
       "minecraft:skeleton": "2025-11-08 12:31:05 -0700",
       "minecraft:ghast": "2025-11-08 12:24:32 -0700",
       "minecraft:spider": "2025-11-08 13:00:54 -0700",
       "minecraft:creeper": "2025-11-08 13:26:27 -0700",
+      "minecraft:evoker": "2025-11-11 18:54:00 -0700",
       "minecraft:witch": "2025-11-08 12:29:11 -0700",
       "minecraft:cave_spider": "2025-11-08 13:01:09 -0700",
       "minecraft:enderman": "2025-11-08 12:58:35 -0700",
@@ -666,6 +668,54 @@
   "minecraft:recipes/misc/light_gray_dye_from_oxeye_daisy": {
     "criteria": {
       "has_oxeye_daisy": "2025-11-10 19:34:33 -0700"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/shulker_box": {
+    "criteria": {
+      "has_shulker_shell": "2025-11-11 16:02:27 -0700"
+    },
+    "done": true
+  },
+  "minecraft:nether/obtain_blaze_rod": {
+    "criteria": {
+      "blaze_rod": "2025-11-11 16:23:04 -0700"
+    },
+    "done": true
+  },
+  "minecraft:recipes/brewing/blaze_powder": {
+    "criteria": {
+      "has_blaze_rod": "2025-11-11 16:23:04 -0700"
+    },
+    "done": true
+  },
+  "minecraft:recipes/brewing/brewing_stand": {
+    "criteria": {
+      "has_blaze_rod": "2025-11-11 16:23:04 -0700"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/light_gray_dye_from_azure_bluet": {
+    "criteria": {
+      "has_azure_bluet": "2025-11-11 16:23:52 -0700"
+    },
+    "done": true
+  },
+  "minecraft:adventure/ol_betsy": {
+    "criteria": {
+      "shot_crossbow": "2025-11-11 16:24:25 -0700"
+    },
+    "done": true
+  },
+  "minecraft:adventure/voluntary_exile": {
+    "criteria": {
+      "voluntary_exile": "2025-11-11 16:25:10 -0700"
+    },
+    "done": true
+  },
+  "minecraft:story/shiny_gear": {
+    "criteria": {
+      "diamond_helmet": "2025-11-11 19:21:28 -0700"
     },
     "done": true
   },

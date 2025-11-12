@@ -72,6 +72,7 @@ public enum DifficultyFeature {
     BUTTON_DAMAGE_ON_PRESS("button_damage_on_press", "Botones hacen 9M de daño al presionarse"),
     DOOR_DAMAGE_ON_OPEN("door_damage_on_open", "Puertas hacen 9M de daño al abrirse"),
     LEVER_DAMAGE_ON_USE("lever_damage_on_use", "Palancas hacen 9M de daño al usarse"),
+    PILLAGER_ROCKET("pillager_rocket", "Pillagers usan cohetes explosivos"),
     TRAPDOOR_DAMAGE_ON_USE("trapdoor_damage_on_use", "Trampillas hacen 9M de daño al usarse");
 
 

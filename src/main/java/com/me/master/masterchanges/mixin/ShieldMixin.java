@@ -10,6 +10,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Random;
+import com.me.master.masterchanges.config.MixinConfigManager;
 
 @Mixin(LivingEntity.class)
 public class ShieldMixin {
@@ -17,11 +18,13 @@ public class ShieldMixin {
     
     @Inject(method = "isDamageSourceBlocked", at = @At("HEAD"), cancellable = true)
     private void onIsBlocked(net.minecraft.world.damagesource.DamageSource source, CallbackInfoReturnable<Boolean> cir) {
+        MixinConfigManager config = MixinConfigManager.getInstance();
+
         LivingEntity entity = (LivingEntity) (Object) this;
         
         if (DifficultyManager.getInstance().isFeatureEnabled(DifficultyFeature.SHIELD_FAIL_CHANCE)) {
             if (entity.isBlocking() && entity.getUseItem().getItem() instanceof ShieldItem) {
-                if (RANDOM.nextFloat() < 0.30f) {
+                if (RANDOM.nextFloat() < config.getFloat("shield_fail_chance", "chance", 0.3f)) {
                     cir.setReturnValue(false);
                 }
             }

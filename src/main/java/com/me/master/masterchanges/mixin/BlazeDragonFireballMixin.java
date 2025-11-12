@@ -13,6 +13,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import com.me.master.masterchanges.config.MixinConfigManager;
 
 @Mixin(targets = "net.minecraft.world.entity.monster.Blaze$BlazeAttackGoal")
 public class BlazeDragonFireballMixin {
@@ -23,6 +24,8 @@ public class BlazeDragonFireballMixin {
             target = "Lnet/minecraft/world/level/Level;addFreshEntity(Lnet/minecraft/world/entity/Entity;)Z"),
             cancellable = true)
     private void shootDragonFireball(CallbackInfo ci) {
+        MixinConfigManager config = MixinConfigManager.getInstance();
+
         if (!DifficultyManager.getInstance().isFeatureEnabled(DifficultyFeature.BLAZE_BLUE_FIRE)) return;
 
         Level level = this.blaze.level();
@@ -30,11 +33,11 @@ public class BlazeDragonFireballMixin {
         
         if (target != null && !level.isClientSide) {
             double d0 = target.getX() - this.blaze.getX();
-            double d1 = target.getY(0.5) - this.blaze.getY(0.5);
+            double d1 = target.getY(config.getFloat("blaze_blue_fire", "value", config.getFloat("blaze_blue_fire", "value1", 0.5f))) - this.blaze.getY(0.5);
             double d2 = target.getZ() - this.blaze.getZ();
             
             DragonFireball dragonFireball = new DragonFireball(level, this.blaze, d0, d1, d2);
-            dragonFireball.setPos(dragonFireball.getX(), this.blaze.getY(0.5) + 0.5, dragonFireball.getZ());
+            dragonFireball.setPos(dragonFireball.getX(), this.blaze.getY(config.getFloat("blaze_blue_fire", "value1", config.getFloat("blaze_blue_fire", "value1", 0.5f))) + 0.5, dragonFireball.getZ());
             level.addFreshEntity(dragonFireball);
             
             ci.cancel();

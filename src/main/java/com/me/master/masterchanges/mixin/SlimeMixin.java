@@ -10,6 +10,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import com.me.master.masterchanges.config.MixinConfigManager;
 
 @Mixin(Slime.class)
 public abstract class SlimeMixin {
@@ -19,8 +20,10 @@ public abstract class SlimeMixin {
     
     @Inject(method = "<init>(Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/Level;)V", at = @At("TAIL"))
     private void onInit(EntityType<? extends Slime> entityType, Level level, CallbackInfo ci) {
+        MixinConfigManager config = MixinConfigManager.getInstance();
+
         if (!level.isClientSide && DifficultyManager.getInstance().isFeatureEnabled(DifficultyFeature.MAX_SIZE_SLIMES)) {
-            this.setSize(15, true);
+            this.setSize(config.getInt("max_size_slimes", "value", 15), true);
         }
     }
 }

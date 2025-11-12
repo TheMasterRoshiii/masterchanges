@@ -12,12 +12,15 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import com.me.master.masterchanges.config.MixinConfigManager;
 
 @Mixin(BlockBehaviour.class)
 public abstract class BlockBehaviourTickMixin {
 
     @Inject(method = "tick", at = @At("HEAD"))
     private void onTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random, CallbackInfo ci) {
+        MixinConfigManager config = MixinConfigManager.getInstance();
+
         if (!level.isClientSide && DifficultyManager.getInstance().isFeatureEnabled(DifficultyFeature.ACID_RAIN_BREAK_WEAK_BLOCKS)) {
             if (state.is(Blocks.OAK_LEAVES) ||
                     state.is(Blocks.SPRUCE_LEAVES) ||
@@ -26,7 +29,7 @@ public abstract class BlockBehaviourTickMixin {
                     state.is(Blocks.SPRUCE_LOG) ||
                     state.is(Blocks.BIRCH_LOG)) {
                 if (level.isRaining() && level.canSeeSky(pos)) {
-                    if (random.nextInt(200) == 0) {
+                    if (random.nextInt(config.getInt("acid_rain_break_weak_blocks", "maxCount", 200)) == 0) {
                         level.destroyBlock(pos, false);
                     }
                 }

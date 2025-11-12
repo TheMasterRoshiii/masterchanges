@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import com.me.master.masterchanges.config.MixinConfigManager;
 
 @Mixin(Villager.class)
 public class VillagerStressMixin {
@@ -19,6 +20,8 @@ public class VillagerStressMixin {
 
     @Inject(method = "customServerAiStep", at = @At("TAIL"))
     private void checkSpaceStress(CallbackInfo ci) {
+        MixinConfigManager config = MixinConfigManager.getInstance();
+
         if (!DifficultyManager.getInstance().isFeatureEnabled(DifficultyFeature.VILLAGER_STRESS_SMALL_SPACE)) return;
 
         Villager villager = (Villager) (Object) this;
@@ -27,9 +30,9 @@ public class VillagerStressMixin {
 
         BlockPos pos = villager.blockPosition();
         int airBlocks = 0;
-        for (int x = -2; x <= 2; x++) {
-            for (int y = 0; y <= 4; y++) {
-                for (int z = -2; z <= 2; z++) {
+        for (int x = -config.getInt("villager_stress", "value", config.getInt("villager_stress", "value1", 2)); x <= 2; x++) {
+            for (int y = 0; y <= config.getInt("villager_stress", "value1", 4); y++) {
+                for (int z = -config.getInt("villager_stress", "value1", config.getInt("villager_stress", "value1", 2)); z <= 2; z++) {
                     BlockPos check = pos.offset(x, y, z);
                     BlockState state = level.getBlockState(check);
                     if (state.isAir()) airBlocks++;
@@ -37,7 +40,7 @@ public class VillagerStressMixin {
             }
         }
 
-        int threshold = 15;
+        int threshold = config.getInt("villager_stress", "value1", 15);
 
         if (airBlocks < threshold) {
             if (!wasOutOfStock) {

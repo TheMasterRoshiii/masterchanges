@@ -19,6 +19,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import com.me.master.masterchanges.config.MixinConfigManager;
 
 @Mixin(Guardian.class)
 public abstract class GuardianMultiLaserMixin {
@@ -31,6 +32,8 @@ public abstract class GuardianMultiLaserMixin {
 
     @Inject(method = "aiStep", at = @At("TAIL"))
     private void multiTargetLaser(CallbackInfo ci) {
+        MixinConfigManager config = MixinConfigManager.getInstance();
+
         Guardian guardian = (Guardian) (Object) this;
         Level level = guardian.level();
 
@@ -50,8 +53,8 @@ public abstract class GuardianMultiLaserMixin {
 
         List<Player> nearbyPlayers = serverLevel.getEntitiesOfClass(
                 Player.class,
-                guardian.getBoundingBox().inflate(16.0),
-                player -> player.isAlive() && guardian.distanceToSqr(player) > 9.0 && player != guardian.getActiveAttackTarget()
+                guardian.getBoundingBox().inflate(config.getDouble("guardian_multi_target", "range", 16.0)),
+                player -> player.isAlive() && guardian.distanceToSqr(player) > config.getFloat("guardian_multi_target", "damage", 9.0f) && player != guardian.getActiveAttackTarget()
         );
 
         if (nearbyPlayers.isEmpty()) {
@@ -60,7 +63,7 @@ public abstract class GuardianMultiLaserMixin {
         }
 
         nearbyPlayers.sort(Comparator.comparingDouble(guardian::distanceToSqr));
-        List<Player> targets = nearbyPlayers.subList(0, Math.min(2, nearbyPlayers.size()));
+        List<Player> targets = nearbyPlayers.subList(0, Math.min(config.getInt("guardian_multi_target", "value", 2), nearbyPlayers.size()));
 
         masterchanges$cleanupFakeGuardians(level);
 
@@ -80,11 +83,11 @@ public abstract class GuardianMultiLaserMixin {
             masterchanges$fakeGuardians.add(fakeGuardian);
         }
 
-        masterchanges$attackCooldown = 80;
+        masterchanges$attackCooldown = config.getInt("guardian_multi_target", "damage1", 80);
 
-        float damage = 8.0f;
-        if (level.getDifficulty() == net.minecraft.world.Difficulty.HARD) damage += 2.0f;
-        if (guardian instanceof net.minecraft.world.entity.monster.ElderGuardian) damage += 2.0f;
+        float damage = config.getFloat("guardian_multi_target", "damage1", 8.0f);
+        if (level.getDifficulty() == net.minecraft.world.Difficulty.HARD) damage += config.getFloat("guardian_multi_target", "damage1", 2.0f);
+        if (guardian instanceof net.minecraft.world.entity.monster.ElderGuardian) damage += config.getFloat("guardian_multi_target", "damage1", 2.0f);
 
         for (Player player : targets) {
             player.hurt(guardian.damageSources().indirectMagic(guardian, guardian), damage);
@@ -121,9 +124,11 @@ public abstract class GuardianMultiLaserMixin {
 
     @Inject(method = "aiStep", at = @At("HEAD"))
     private void cleanupExpiredFakes(CallbackInfo ci) {
+        MixinConfigManager config = MixinConfigManager.getInstance();
+
         Guardian guardian = (Guardian) (Object) this;
         if (guardian.level().isClientSide) return;
 
-        masterchanges$fakeGuardians.removeIf(fake -> fake == null || !fake.isAlive() || fake.tickCount > 85);
+        masterchanges$fakeGuardians.removeIf(fake -> fake == null || !fake.isAlive() || fake.tickCount > config.getInt("guardian_multi_target", "value1", 85));
     }
 }

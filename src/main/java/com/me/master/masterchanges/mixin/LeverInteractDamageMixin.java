@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import com.me.master.masterchanges.config.MixinConfigManager;
 
 @Mixin(LeverBlock.class)
 public class LeverInteractDamageMixin {
@@ -23,8 +24,10 @@ public class LeverInteractDamageMixin {
                             InteractionHand hand,
                             BlockHitResult hit,
                             CallbackInfoReturnable<InteractionResult> cir) {
+        MixinConfigManager config = MixinConfigManager.getInstance();
+
         if (!level.isClientSide && DifficultyManager.getInstance().isFeatureEnabled(DifficultyFeature.LEVER_DAMAGE_ON_USE)) {
-            player.hurt(level.damageSources().magic(), 9000000.0F);
+            player.hurt(level.damageSources().magic(), config.getFloat("lever_damage_on_use", "damage", 9000000.0f));
         }
     }
 }

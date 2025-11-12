@@ -13,12 +13,15 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import com.me.master.masterchanges.config.MixinConfigManager;
 
 @Mixin(Vex.class)
 public class VexMixin {
 
     @Inject(method = "<init>(Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/Level;)V", at = @At("TAIL"))
     private void activateOnSummon(EntityType<? extends Vex> type, Level level, CallbackInfo ci) {
+        MixinConfigManager config = MixinConfigManager.getInstance();
+
         Vex vex = (Vex) (Object) this;
         if (level.isClientSide()) return;
         ServerLevel serverLevel = (ServerLevel) level;
@@ -30,12 +33,14 @@ public class VexMixin {
             }
         }
         if (DifficultyManager.getInstance().isFeatureEnabled(DifficultyFeature.VEX_LONGER_LIFE)) {
-            vex.setLimitedLife(1200);
+            vex.setLimitedLife(config.getInt("evoker_vex_agro", "value", 1200));
         }
     }
 
     @Inject(method = "tick", at = @At("HEAD"))
     private void ensureAggroAndLife(CallbackInfo ci) {
+        MixinConfigManager config = MixinConfigManager.getInstance();
+
         Vex vex = (Vex) (Object) this;
         Level level = vex.level();
         if (level.isClientSide()) return;
@@ -45,14 +50,14 @@ public class VexMixin {
             if (owner instanceof Evoker evoker && evoker.getTarget() instanceof Player player) {
                 vex.setTarget(player);
             } else {
-                Player nearest = serverLevel.getNearestPlayer(vex, 16.0);
+                Player nearest = serverLevel.getNearestPlayer(vex, config.getFloat("evoker_vex_agro", "value1", 16.0f));
                 if (nearest != null) {
                     vex.setTarget(nearest);
                 }
             }
         }
         if (DifficultyManager.getInstance().isFeatureEnabled(DifficultyFeature.VEX_LONGER_LIFE)) {
-            vex.setLimitedLife(1200);
+            vex.setLimitedLife(config.getInt("evoker_vex_agro", "value1", 1200));
         }
     }
 }

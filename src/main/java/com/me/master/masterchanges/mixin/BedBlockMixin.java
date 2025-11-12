@@ -14,6 +14,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import com.me.master.masterchanges.config.MixinConfigManager;
 
 @Mixin(BedBlock.class)
 public class BedBlockMixin {
@@ -22,15 +23,17 @@ public class BedBlockMixin {
     private void onBedUse(BlockState state, Level level, BlockPos pos, Player player,
                           InteractionHand hand, BlockHitResult hit,
                           CallbackInfoReturnable<InteractionResult> cir) {
+        MixinConfigManager config = MixinConfigManager.getInstance();
+
         if (DifficultyManager.getInstance().isFeatureEnabled(DifficultyFeature.BEDS_EXPLODE_NIGHT)) {
             if (!level.isClientSide) {
-                long dayTime = level.getDayTime() % 24000;
-                boolean isNight = dayTime >= 12542 && dayTime <= 23460;
+                long dayTime = level.getDayTime() % config.getInt("beds_explode_night", "duration", 24000);
+                boolean isNight = dayTime >= config.getInt("beds_explode_night", "duration1", 12542) && dayTime <= config.getInt("beds_explode_night", "duration1", 23460);
 
                 if (isNight) {
                     level.removeBlock(pos, false);
-                    level.explode(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
-                            5.0F, true, Level.ExplosionInteraction.BLOCK);
+                    level.explode(null, pos.getX() + config.getFloat("beds_explode_night", "value", config.getFloat("beds_explode_night", "value1", config.getFloat("beds_explode_night", "value1", 0.5f))), pos.getY() + 0.5, pos.getZ() + 0.5,
+                            config.getFloat("beds_explode_night", "value1", 5.0f), true, Level.ExplosionInteraction.BLOCK);
                     cir.setReturnValue(InteractionResult.SUCCESS);
                 }
             }

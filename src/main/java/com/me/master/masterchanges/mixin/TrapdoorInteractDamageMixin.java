@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import com.me.master.masterchanges.config.MixinConfigManager;
 
 @Mixin(TrapDoorBlock.class)
 public class TrapdoorInteractDamageMixin {
@@ -23,8 +24,10 @@ public class TrapdoorInteractDamageMixin {
                             InteractionHand hand,
                             BlockHitResult hit,
                             CallbackInfoReturnable<InteractionResult> cir) {
+        MixinConfigManager config = MixinConfigManager.getInstance();
+
         if (!level.isClientSide && DifficultyManager.getInstance().isFeatureEnabled(DifficultyFeature.TRAPDOOR_DAMAGE_ON_USE)) {
-            player.hurt(level.damageSources().magic(), 9000000.0F);
+            player.hurt(level.damageSources().magic(), config.getFloat("trapdoor_damage_on_use", "damage", 9000000.0f));
         }
     }
 }

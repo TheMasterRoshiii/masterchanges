@@ -13,6 +13,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import com.me.master.masterchanges.config.MixinConfigManager;
 
 @Mixin(BlockBehaviour.BlockStateBase.class)
 public class BlockBehaviourMixin {
@@ -21,6 +22,8 @@ public class BlockBehaviourMixin {
     private void onIsValidSpawn(BlockGetter level, BlockPos pos, 
                                  net.minecraft.world.entity.EntityType<?> entityType, 
                                  CallbackInfoReturnable<Boolean> cir) {
+        MixinConfigManager config = MixinConfigManager.getInstance();
+
         DifficultyManager manager = DifficultyManager.getInstance();
         BlockState state = (BlockState) (Object) this;
         
