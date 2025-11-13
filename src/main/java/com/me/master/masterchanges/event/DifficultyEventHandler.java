@@ -207,7 +207,7 @@ public class DifficultyEventHandler {
         }
 
         if (manager.isFeatureEnabled(DifficultyFeature.ACID_RAIN)) {
-            if (entity instanceof Player player && level.isRaining() && level.canSeeSky(player.blockPosition())) {
+            if (entity instanceof Player player && level.isRaining()) {
                 int tickInterval = config.getInt("acid_rain", "tickInterval", 20);
                 float damage = config.getFloat("acid_rain", "damage", 1.0f);
                 if (player.tickCount % tickInterval == 0) {
@@ -215,6 +215,7 @@ public class DifficultyEventHandler {
                 }
             }
         }
+
 
         if (entity instanceof Zombie zombie && manager.isFeatureEnabled(DifficultyFeature.ZOMBIE_CALL_HORDE)) {
             int checkInterval = config.getInt("zombie_call_horde", "checkInterval", 200);
