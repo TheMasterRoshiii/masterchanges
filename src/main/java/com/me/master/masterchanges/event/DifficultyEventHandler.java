@@ -49,22 +49,34 @@ public class DifficultyEventHandler {
         Level level = entity.level();
         if (level.isClientSide) return;
 
-        int tickInterval = config.getInt("spider_webs", "tickInterval", 40);
+        int tickInterval = config.getInt("spider_webs", "tickInterval", 10);
         double detectionRange = config.getDouble("spider_webs", "detectionRange", 5.0);
 
         if (spider.tickCount % tickInterval != 0) return;
 
         Player nearestPlayer = level.getNearestPlayer(spider, detectionRange);
         if (nearestPlayer != null) {
-            BlockPos playerPos = nearestPlayer.blockPosition().below();
-            RandomSource random = spider.getRandom();
-            double spreadRadius = config.getDouble("spider_webs", "spreadRadius", 2.0);
-            double offsetX = (random.nextDouble() - 0.5) * spreadRadius;
-            double offsetZ = (random.nextDouble() - 0.5) * spreadRadius;
-            BlockPos webPos = playerPos.offset((int) offsetX, 0, (int) offsetZ);
-            BlockState current = level.getBlockState(webPos);
-            if (current.isAir() && !level.getBlockState(webPos.above()).isSolid()) {
-                level.setBlock(webPos, Blocks.COBWEB.defaultBlockState(), 3);
+            BlockPos pos = nearestPlayer.blockPosition();
+
+            BlockPos[] possiblePositions = {
+                    pos,
+                    pos.below(),
+                    pos.north(),
+                    pos.south(),
+                    pos.east(),
+                    pos.west(),
+                    pos.north().east(),
+                    pos.north().west(),
+                    pos.south().east(),
+                    pos.south().west()
+            };
+
+            for (BlockPos webPos : possiblePositions) {
+                BlockState current = level.getBlockState(webPos);
+                if (current.isAir()) {
+                    level.setBlock(webPos, Blocks.COBWEB.defaultBlockState(), 3);
+                    break;
+                }
             }
         }
     }
@@ -207,7 +219,7 @@ public class DifficultyEventHandler {
         }
 
         if (manager.isFeatureEnabled(DifficultyFeature.ACID_RAIN)) {
-            if (entity instanceof Player player && level.isRaining()) {
+            if (entity instanceof Player player && level.isRaining() && level.canSeeSky(player.blockPosition().above())) {
                 int tickInterval = config.getInt("acid_rain", "tickInterval", 20);
                 float damage = config.getFloat("acid_rain", "damage", 1.0f);
                 if (player.tickCount % tickInterval == 0) {
@@ -215,7 +227,6 @@ public class DifficultyEventHandler {
                 }
             }
         }
-
 
         if (entity instanceof Zombie zombie && manager.isFeatureEnabled(DifficultyFeature.ZOMBIE_CALL_HORDE)) {
             int checkInterval = config.getInt("zombie_call_horde", "checkInterval", 200);

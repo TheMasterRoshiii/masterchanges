@@ -1,39 +1,39 @@
-[12nov.2025 13:59:34.499] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forgeclientuserdev, --version, MOD_DEV, --assetIndex, 5, --assetsDir, /home/master/.gradle/caches/forge_gradle/assets, --gameDir, ., --fml.forgeVersion, 47.4.8, --fml.mcVersion, 1.20.1, --fml.forgeGroup, net.minecraftforge, --fml.mcpVersion, 20230612.114412, --mixin.config, masterchanges.mixins.json]
-[12nov.2025 13:59:34.511] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 10.0.9+10.0.9+main.dcd20f30 starting: java version 17.0.17 by Eclipse Adoptium; OS Linux arch amd64 version 6.17.7-200.fc42.x86_64
-[12nov.2025 13:59:34.748] [main/INFO] [net.minecraftforge.fml.loading.ImmediateWindowHandler/]: Loading ImmediateWindowProvider fmlearlywindow
-[12nov.2025 13:59:34.960] [main/INFO] [EARLYDISPLAY/]: Trying GL version 4.6
-[12nov.2025 13:59:35.207] [main/INFO] [EARLYDISPLAY/]: Requested GL version 4.6 got version 4.6
-[12nov.2025 13:59:35.462] [pool-2-thread-1/INFO] [EARLYDISPLAY/]: GL info: Mesa Intel(R) UHD Graphics (CML GT1) GL version 4.6 (Core Profile) Mesa 25.2.6 (git-3f12436d80), Intel
-[12nov.2025 13:59:35.527] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.5 Source=union:/home/master/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.5/9d1c0c3a304ae6697ecd477218fa61b850bf57fc/mixin-0.8.5.jar%23116!/ Service=ModLauncher Env=CLIENT
-[12nov.2025 13:59:36.716] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file /home/master/.gradle/caches/modules-2/files-2.1/net.minecraftforge/javafmllanguage/1.20.1-47.4.8/721e2d976494c8275bd81b3404e7dd109b7558c/javafmllanguage-1.20.1-47.4.8.jar is missing mods.toml file
-[12nov.2025 13:59:36.719] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file /home/master/.gradle/caches/modules-2/files-2.1/net.minecraftforge/lowcodelanguage/1.20.1-47.4.8/73022064045853db9acea4a61e8c76aad4df52d6/lowcodelanguage-1.20.1-47.4.8.jar is missing mods.toml file
-[12nov.2025 13:59:36.722] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file /home/master/.gradle/caches/modules-2/files-2.1/net.minecraftforge/mclanguage/1.20.1-47.4.8/f6f8fcedd2034d8aeb4c696bae232555fbc99bd3/mclanguage-1.20.1-47.4.8.jar is missing mods.toml file
-[12nov.2025 13:59:36.726] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file /home/master/.gradle/caches/modules-2/files-2.1/net.minecraftforge/fmlcore/1.20.1-47.4.8/21a451a2c815d519fd534d90eddbd8fd0c44d36e/fmlcore-1.20.1-47.4.8.jar is missing mods.toml file
-[12nov.2025 13:59:37.187] [main/INFO] [net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator/]: Found 1 dependencies adding them to mods collection
-[12nov.2025 13:59:40.718] [main/INFO] [mixin/]: Compatibility level set to JAVA_17
-[12nov.2025 13:59:40.786] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgeclientuserdev' with arguments [--version, MOD_DEV, --gameDir, ., --assetsDir, /home/master/.gradle/caches/forge_gradle/assets, --assetIndex, 5]
-[12nov.2025 13:59:40.951] [main/WARN] [mixin/]: Reference map 'masterchanges.refmap.json' for masterchanges.mixins.json could not be read. If this is a development environment you can ignore this message
-[12nov.2025 13:59:41.011] [main/INFO] [Rubidium/]: Loaded configuration file for Rubidium: 41 options available, 0 override(s) found
-[12nov.2025 13:59:42.349] [main/INFO] [mixin/]: Remapping refMap mixins.rubidium.refmap.json using /home/master/IdeaProjects/MasterChanges/build/createSrgToMcp/output.srg
-[12nov.2025 13:59:42.358] [main/INFO] [mixin/]: Remapping refMap mixins.rubidium.refmap.json using /home/master/IdeaProjects/MasterChanges/build/createSrgToMcp/output.srg
-[12nov.2025 13:59:42.361] [main/INFO] [mixin/]: Remapping refMap geckolib.refmap.json using /home/master/IdeaProjects/MasterChanges/build/createSrgToMcp/output.srg
-[12nov.2025 13:59:55.366] [Datafixer Bootstrap/INFO] [com.mojang.datafixers.DataFixerBuilder/]: 188 Datafixer optimizations took 574 milliseconds
-[12nov.2025 14:00:00.154] [Render thread/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/home/master/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.4.8_mapped_official_1.20.1/forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/assets/.mcassetsroot' uses unexpected schema
-[12nov.2025 14:00:00.156] [Render thread/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/home/master/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.4.8_mapped_official_1.20.1/forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/data/.mcassetsroot' uses unexpected schema
-[12nov.2025 14:00:00.185] [Render thread/INFO] [com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService/]: Environment: authHost='https://authserver.mojang.com', accountsHost='https://api.mojang.com', sessionHost='https://sessionserver.mojang.com', servicesHost='https://api.minecraftservices.com', name='PROD'
-[12nov.2025 14:00:00.196] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Setting user: Dev
-[12nov.2025 14:00:00.520] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Backend library: LWJGL version 3.3.1 build 7
-[12nov.2025 14:00:00.642] [Render thread/INFO] [Rubidium-PostlaunchChecks/]: OpenGL Vendor: Intel
-[12nov.2025 14:00:00.642] [Render thread/INFO] [Rubidium-PostlaunchChecks/]: OpenGL Renderer: Mesa Intel(R) UHD Graphics (CML GT1)
-[12nov.2025 14:00:00.643] [Render thread/INFO] [Rubidium-PostlaunchChecks/]: OpenGL Version: 4.6 (Core Profile) Mesa 25.2.6 (git-3f12436d80)
-[12nov.2025 14:00:01.108] [modloading-worker-0/INFO] [Rubidium-GraphicsAdapterProbe/]: Searching for graphics cards...
-[12nov.2025 14:00:01.207] [modloading-worker-0/INFO] [Rubidium-GraphicsAdapterProbe/]: Found graphics card: GraphicsAdapterInfo[vendor=INTEL, name=Comet Lake-U GT2 [UHD Graphics 620], version=unknown]
-[12nov.2025 14:00:01.214] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Forge mod loading, version 47.4.8, for MC 1.20.1 with MCP 20230612.114412
-[12nov.2025 14:00:01.221] [modloading-worker-0/WARN] [Rubidium-Workarounds/]: Rubidium has applied one or more workarounds to prevent crashes or other issues on your system: [NO_ERROR_CONTEXT_UNSUPPORTED]
-[12nov.2025 14:00:01.221] [modloading-worker-0/WARN] [Rubidium-Workarounds/]: This is not necessarily an issue, but it may result in certain features or optimizations being disabled. You can sometimes fix these issues by upgrading your graphics driver.
-[12nov.2025 14:00:01.232] [modloading-worker-0/INFO] [net.minecraftforge.common.MinecraftForge/FORGE]: MinecraftForge v47.4.8 Initialized
-[12nov.2025 14:00:03.866] [Render thread/INFO] [net.minecraftforge.gametest.ForgeGameTestHooks/]: Enabled Gametest Namespaces: [masterchanges]
-[12nov.2025 14:00:04.537] [Render thread/ERROR] [com.mojang.text2speech.Narrator/]: Error while loading the narrator
+[14nov.2025 14:35:27.165] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forgeclientuserdev, --version, MOD_DEV, --assetIndex, 5, --assetsDir, /home/master/.gradle/caches/forge_gradle/assets, --gameDir, ., --fml.forgeVersion, 47.4.8, --fml.mcVersion, 1.20.1, --fml.forgeGroup, net.minecraftforge, --fml.mcpVersion, 20230612.114412, --mixin.config, masterchanges.mixins.json]
+[14nov.2025 14:35:27.176] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 10.0.9+10.0.9+main.dcd20f30 starting: java version 17.0.17 by Eclipse Adoptium; OS Linux arch amd64 version 6.17.7-200.fc42.x86_64
+[14nov.2025 14:35:27.425] [main/INFO] [net.minecraftforge.fml.loading.ImmediateWindowHandler/]: Loading ImmediateWindowProvider fmlearlywindow
+[14nov.2025 14:35:27.673] [main/INFO] [EARLYDISPLAY/]: Trying GL version 4.6
+[14nov.2025 14:35:27.858] [main/INFO] [EARLYDISPLAY/]: Requested GL version 4.6 got version 4.6
+[14nov.2025 14:35:28.161] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.5 Source=union:/home/master/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.5/9d1c0c3a304ae6697ecd477218fa61b850bf57fc/mixin-0.8.5.jar%23116!/ Service=ModLauncher Env=CLIENT
+[14nov.2025 14:35:28.177] [pool-2-thread-1/INFO] [EARLYDISPLAY/]: GL info: Mesa Intel(R) UHD Graphics (CML GT1) GL version 4.6 (Core Profile) Mesa 25.2.6 (git-3f12436d80), Intel
+[14nov.2025 14:35:29.008] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file /home/master/.gradle/caches/modules-2/files-2.1/net.minecraftforge/javafmllanguage/1.20.1-47.4.8/721e2d976494c8275bd81b3404e7dd109b7558c/javafmllanguage-1.20.1-47.4.8.jar is missing mods.toml file
+[14nov.2025 14:35:29.010] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file /home/master/.gradle/caches/modules-2/files-2.1/net.minecraftforge/lowcodelanguage/1.20.1-47.4.8/73022064045853db9acea4a61e8c76aad4df52d6/lowcodelanguage-1.20.1-47.4.8.jar is missing mods.toml file
+[14nov.2025 14:35:29.013] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file /home/master/.gradle/caches/modules-2/files-2.1/net.minecraftforge/mclanguage/1.20.1-47.4.8/f6f8fcedd2034d8aeb4c696bae232555fbc99bd3/mclanguage-1.20.1-47.4.8.jar is missing mods.toml file
+[14nov.2025 14:35:29.016] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file /home/master/.gradle/caches/modules-2/files-2.1/net.minecraftforge/fmlcore/1.20.1-47.4.8/21a451a2c815d519fd534d90eddbd8fd0c44d36e/fmlcore-1.20.1-47.4.8.jar is missing mods.toml file
+[14nov.2025 14:35:29.431] [main/INFO] [net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator/]: Found 1 dependencies adding them to mods collection
+[14nov.2025 14:35:32.799] [main/INFO] [mixin/]: Compatibility level set to JAVA_17
+[14nov.2025 14:35:32.836] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgeclientuserdev' with arguments [--version, MOD_DEV, --gameDir, ., --assetsDir, /home/master/.gradle/caches/forge_gradle/assets, --assetIndex, 5]
+[14nov.2025 14:35:32.926] [main/WARN] [mixin/]: Reference map 'masterchanges.refmap.json' for masterchanges.mixins.json could not be read. If this is a development environment you can ignore this message
+[14nov.2025 14:35:32.955] [main/INFO] [Rubidium/]: Loaded configuration file for Rubidium: 41 options available, 0 override(s) found
+[14nov.2025 14:35:34.605] [main/INFO] [mixin/]: Remapping refMap mixins.rubidium.refmap.json using /home/master/IdeaProjects/MasterChanges/build/createSrgToMcp/output.srg
+[14nov.2025 14:35:34.611] [main/INFO] [mixin/]: Remapping refMap mixins.rubidium.refmap.json using /home/master/IdeaProjects/MasterChanges/build/createSrgToMcp/output.srg
+[14nov.2025 14:35:34.614] [main/INFO] [mixin/]: Remapping refMap geckolib.refmap.json using /home/master/IdeaProjects/MasterChanges/build/createSrgToMcp/output.srg
+[14nov.2025 14:35:47.040] [Datafixer Bootstrap/INFO] [com.mojang.datafixers.DataFixerBuilder/]: 188 Datafixer optimizations took 686 milliseconds
+[14nov.2025 14:35:51.993] [Render thread/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/home/master/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.4.8_mapped_official_1.20.1/forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/assets/.mcassetsroot' uses unexpected schema
+[14nov.2025 14:35:51.994] [Render thread/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/home/master/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.4.8_mapped_official_1.20.1/forge-1.20.1-47.4.8_mapped_official_1.20.1.jar%23181!/data/.mcassetsroot' uses unexpected schema
+[14nov.2025 14:35:52.030] [Render thread/INFO] [com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService/]: Environment: authHost='https://authserver.mojang.com', accountsHost='https://api.mojang.com', sessionHost='https://sessionserver.mojang.com', servicesHost='https://api.minecraftservices.com', name='PROD'
+[14nov.2025 14:35:52.043] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Setting user: Dev
+[14nov.2025 14:35:52.324] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Backend library: LWJGL version 3.3.1 build 7
+[14nov.2025 14:35:52.448] [Render thread/INFO] [Rubidium-PostlaunchChecks/]: OpenGL Vendor: Intel
+[14nov.2025 14:35:52.449] [Render thread/INFO] [Rubidium-PostlaunchChecks/]: OpenGL Renderer: Mesa Intel(R) UHD Graphics (CML GT1)
+[14nov.2025 14:35:52.449] [Render thread/INFO] [Rubidium-PostlaunchChecks/]: OpenGL Version: 4.6 (Core Profile) Mesa 25.2.6 (git-3f12436d80)
+[14nov.2025 14:35:53.120] [modloading-worker-0/INFO] [Rubidium-GraphicsAdapterProbe/]: Searching for graphics cards...
+[14nov.2025 14:35:53.182] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Forge mod loading, version 47.4.8, for MC 1.20.1 with MCP 20230612.114412
+[14nov.2025 14:35:53.203] [modloading-worker-0/INFO] [net.minecraftforge.common.MinecraftForge/FORGE]: MinecraftForge v47.4.8 Initialized
+[14nov.2025 14:35:53.259] [modloading-worker-0/INFO] [Rubidium-GraphicsAdapterProbe/]: Found graphics card: GraphicsAdapterInfo[vendor=INTEL, name=Comet Lake-U GT2 [UHD Graphics 620], version=unknown]
+[14nov.2025 14:35:53.264] [modloading-worker-0/WARN] [Rubidium-Workarounds/]: Rubidium has applied one or more workarounds to prevent crashes or other issues on your system: [NO_ERROR_CONTEXT_UNSUPPORTED]
+[14nov.2025 14:35:53.264] [modloading-worker-0/WARN] [Rubidium-Workarounds/]: This is not necessarily an issue, but it may result in certain features or optimizations being disabled. You can sometimes fix these issues by upgrading your graphics driver.
+[14nov.2025 14:35:56.721] [Render thread/INFO] [net.minecraftforge.gametest.ForgeGameTestHooks/]: Enabled Gametest Namespaces: [masterchanges]
+[14nov.2025 14:35:57.349] [Render thread/ERROR] [com.mojang.text2speech.Narrator/]: Error while loading the narrator
 com.mojang.text2speech.Narrator$InitializeException: Failed to load library flite
 	at com.mojang.text2speech.NarratorLinux$FliteLibrary.loadNative(NarratorLinux.java:69) ~[text2speech-1.17.9.jar:?]
 	at com.mojang.text2speech.NarratorLinux.<init>(NarratorLinux.java:18) ~[text2speech-1.17.9.jar:?]
@@ -147,101 +147,137 @@ Native library (linux-x86-64/libflite.so) not found in resource path (/home/mast
 		at cpw.mods.modlauncher.BootstrapLaunchConsumer.accept(BootstrapLaunchConsumer.java:26) ~[modlauncher-10.0.9.jar:?]
 		at cpw.mods.modlauncher.BootstrapLaunchConsumer.accept(BootstrapLaunchConsumer.java:23) ~[modlauncher-10.0.9.jar:?]
 		at cpw.mods.bootstraplauncher.BootstrapLauncher.main(BootstrapLauncher.java:141) ~[bootstraplauncher-1.1.2.jar:?]
-[12nov.2025 14:00:04.621] [Render thread/INFO] [net.minecraft.server.packs.resources.ReloadableResourceManager/]: Reloading ResourceManager: vanilla, mod_resources
-[12nov.2025 14:00:05.210] [Worker-Main-3/INFO] [com.me.master.masterchanges.MasterChanges/]: MasterChanges common setup
-[12nov.2025 14:00:05.367] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [forge] Starting version check at https://files.minecraftforge.net/net/minecraftforge/forge/promotions_slim.json
-[12nov.2025 14:00:06.417] [Worker-Main-1/INFO] [net.minecraft.client.gui.font.providers.UnihexProvider/]: Found unifont_all_no_pua-15.0.06.hex, loading
-[12nov.2025 14:00:07.994] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [forge] Found status: OUTDATED Current: 47.4.8 Target: 47.4.10
-[12nov.2025 14:00:10.689] [Render thread/INFO] [com.me.master.masterchanges.MasterChanges/]: MasterChanges networking registered
-[12nov.2025 14:00:10.701] [Worker-Main-2/INFO] [com.me.master.masterchanges.MasterChanges/]: MasterChanges client setup
-[12nov.2025 14:00:17.649] [Render thread/WARN] [net.minecraft.client.sounds.SoundEngine/]: Missing sound for event: minecraft:item.goat_horn.play
-[12nov.2025 14:00:17.650] [Render thread/WARN] [net.minecraft.client.sounds.SoundEngine/]: Missing sound for event: minecraft:entity.goat.screaming.horn_break
-[12nov.2025 14:00:17.710] [Render thread/INFO] [com.mojang.blaze3d.audio.Library/]: OpenAL initialized on device JACK Default
-[12nov.2025 14:00:17.713] [Render thread/INFO] [net.minecraft.client.sounds.SoundEngine/SOUNDS]: Sound engine started
-[12nov.2025 14:00:18.070] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 1024x1024x0 minecraft:textures/atlas/blocks.png-atlas
-[12nov.2025 14:00:18.160] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x0 minecraft:textures/atlas/signs.png-atlas
-[12nov.2025 14:00:18.163] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x512x0 minecraft:textures/atlas/shield_patterns.png-atlas
-[12nov.2025 14:00:18.166] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x512x0 minecraft:textures/atlas/banner_patterns.png-atlas
-[12nov.2025 14:00:18.170] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 1024x1024x0 minecraft:textures/atlas/armor_trims.png-atlas
-[12nov.2025 14:00:18.209] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 128x64x0 minecraft:textures/atlas/decorated_pot.png-atlas
-[12nov.2025 14:00:18.212] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x0 minecraft:textures/atlas/chest.png-atlas
-[12nov.2025 14:00:18.214] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x0 minecraft:textures/atlas/beds.png-atlas
-[12nov.2025 14:00:18.218] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x0 minecraft:textures/atlas/shulker_boxes.png-atlas
-[12nov.2025 14:00:18.626] [Render thread/WARN] [net.minecraft.client.renderer.ShaderInstance/]: Shader rendertype_entity_translucent_emissive could not find sampler named Sampler2 in the specified shader program.
-[12nov.2025 14:00:18.807] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x0 minecraft:textures/atlas/particles.png-atlas
-[12nov.2025 14:00:18.820] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x0 minecraft:textures/atlas/paintings.png-atlas
-[12nov.2025 14:00:18.823] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 128x128x0 minecraft:textures/atlas/mob_effects.png-atlas
-[12nov.2025 14:00:19.465] [Realms Notification Availability checker #1/INFO] [com.mojang.realmsclient.client.RealmsClient/]: Could not authorize you against Realms server: java.lang.RuntimeException: Failed to parse into SignedJWT: 0
-[12nov.2025 14:00:31.435] [Render thread/INFO] [net.minecraftforge.registries.GameData/REGISTRIES]: Injecting existing registry data into this CLIENT instance
-[12nov.2025 14:00:34.806] [Render thread/INFO] [com.me.master.masterchanges.MasterChanges/]: Comandos registrados
-[12nov.2025 14:00:37.012] [Render thread/INFO] [net.minecraft.world.item.crafting.RecipeManager/]: Loaded 7 recipes
-[12nov.2025 14:00:37.386] [Render thread/INFO] [net.minecraft.advancements.AdvancementList/]: Loaded 1271 advancements
-[12nov.2025 14:00:38.569] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Starting integrated minecraft server version 1.20.1
-[12nov.2025 14:00:38.570] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Generating keypair
-[12nov.2025 14:00:45.692] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Preparing start region for dimension minecraft:overworld
-[12nov.2025 14:00:57.609] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[12nov.2025 14:00:57.610] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[12nov.2025 14:00:57.611] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[12nov.2025 14:00:57.611] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[12nov.2025 14:00:57.630] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[12nov.2025 14:00:57.630] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[12nov.2025 14:00:57.631] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[12nov.2025 14:00:57.633] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[12nov.2025 14:00:57.633] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[12nov.2025 14:00:57.633] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[12nov.2025 14:00:57.633] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[12nov.2025 14:00:57.634] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[12nov.2025 14:00:57.634] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[12nov.2025 14:00:57.634] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[12nov.2025 14:00:57.634] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[12nov.2025 14:00:57.634] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[12nov.2025 14:00:57.634] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[12nov.2025 14:00:57.634] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[12nov.2025 14:00:57.634] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[12nov.2025 14:00:57.635] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[12nov.2025 14:00:57.635] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[12nov.2025 14:00:57.637] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[12nov.2025 14:00:57.637] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[12nov.2025 14:00:57.638] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[12nov.2025 14:00:57.699] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[12nov.2025 14:00:58.204] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[12nov.2025 14:00:58.706] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[12nov.2025 14:00:59.210] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 3%
-[12nov.2025 14:00:59.694] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 23%
-[12nov.2025 14:01:00.219] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 43%
-[12nov.2025 14:01:00.698] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 61%
-[12nov.2025 14:01:01.210] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 89%
-[12nov.2025 14:01:01.477] [Server thread/INFO] [net.minecraftforge.server.permission.PermissionAPI/]: Successfully initialized permission handler forge:default_handler
-[12nov.2025 14:01:01.477] [Server thread/INFO] [com.me.master.masterchanges.MasterChanges/]: MasterChanges server starting
-[12nov.2025 14:01:01.487] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Time elapsed: 15794 ms
-[12nov.2025 14:01:01.870] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Changing view distance to 2, from 10
-[12nov.2025 14:01:01.875] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Changing simulation distance to 5, from 0
-[12nov.2025 14:01:02.064] [Render thread/WARN] [io.netty.util.internal.SystemPropertyUtil/]: Unable to parse the boolean system property 'java.net.preferIPv6Addresses':system - using the default value: false
-[12nov.2025 14:01:02.865] [Netty Local Client IO #0/INFO] [net.minecraftforge.network.NetworkHooks/]: Connected to a modded server.
-[12nov.2025 14:01:03.125] [Server thread/INFO] [net.minecraft.server.players.PlayerList/]: Dev[local:E:66162645] logged in with entity id 108 at (-338.3671113220359, 104.0, -211.5816509768999)
-[12nov.2025 14:01:03.304] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Dev joined the game
-[12nov.2025 14:01:03.458] [Render thread/INFO] [ChunkBuilder/]: Started 1 worker threads
-[12nov.2025 14:01:04.243] [Render thread/INFO] [net.minecraft.advancements.AdvancementList/]: Loaded 179 advancements
-[12nov.2025 14:01:11.140] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: [Dev: Applied 100.0 damage to Dev]
-[12nov.2025 14:01:11.163] [Render thread/INFO] [net.minecraft.client.gui.components.ChatComponent/]: [System] [CHAT] Applied 100.0 damage to Dev
-[12nov.2025 14:01:21.085] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: [Dev: Applied 100.0 damage to Dev]
-[12nov.2025 14:01:21.112] [Render thread/INFO] [net.minecraft.client.gui.components.ChatComponent/]: [System] [CHAT] Applied 100.0 damage to Dev
-[12nov.2025 14:01:22.907] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: [Dev: Applied 100.0 damage to Dev]
-[12nov.2025 14:01:22.921] [Render thread/INFO] [net.minecraft.client.gui.components.ChatComponent/]: [System] [CHAT] Applied 100.0 damage to Dev
-[12nov.2025 14:01:24.928] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Saving and pausing game...
-[12nov.2025 14:01:24.971] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
-[12nov.2025 14:01:25.049] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
-[12nov.2025 14:01:25.052] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
-[12nov.2025 14:01:26.128] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Stopping server
-[12nov.2025 14:01:26.142] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving players
-[12nov.2025 14:01:26.311] [Server thread/INFO] [net.minecraft.server.network.ServerGamePacketListenerImpl/]: Dev lost connection: Server closed
-[12nov.2025 14:01:26.320] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Dev left the game
-[12nov.2025 14:01:26.349] [Server thread/INFO] [net.minecraft.server.network.ServerGamePacketListenerImpl/]: Stopping singleplayer server as player logged out
-[12nov.2025 14:01:26.350] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving worlds
-[12nov.2025 14:01:30.826] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
-[12nov.2025 14:01:31.797] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
-[12nov.2025 14:01:31.801] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
-[12nov.2025 14:01:31.998] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (New World): All chunks are saved
-[12nov.2025 14:01:32.004] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
-[12nov.2025 14:01:32.004] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
-[12nov.2025 14:01:32.004] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage: All dimensions are saved
+[14nov.2025 14:35:57.414] [Render thread/INFO] [net.minecraft.server.packs.resources.ReloadableResourceManager/]: Reloading ResourceManager: vanilla, mod_resources
+[14nov.2025 14:35:58.596] [Worker-Main-1/INFO] [net.minecraft.client.gui.font.providers.UnihexProvider/]: Found unifont_all_no_pua-15.0.06.hex, loading
+[14nov.2025 14:36:01.999] [Worker-Main-1/INFO] [com.me.master.masterchanges.MasterChanges/]: MasterChanges common setup
+[14nov.2025 14:36:02.342] [Render thread/INFO] [com.me.master.masterchanges.MasterChanges/]: MasterChanges networking registered
+[14nov.2025 14:36:02.352] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [forge] Starting version check at https://files.minecraftforge.net/net/minecraftforge/forge/promotions_slim.json
+[14nov.2025 14:36:02.386] [Worker-Main-1/INFO] [com.me.master.masterchanges.MasterChanges/]: MasterChanges client setup
+[14nov.2025 14:36:04.106] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [forge] Found status: OUTDATED Current: 47.4.8 Target: 47.4.10
+[14nov.2025 14:36:11.096] [Render thread/WARN] [net.minecraft.client.sounds.SoundEngine/]: Missing sound for event: minecraft:item.goat_horn.play
+[14nov.2025 14:36:11.097] [Render thread/WARN] [net.minecraft.client.sounds.SoundEngine/]: Missing sound for event: minecraft:entity.goat.screaming.horn_break
+[14nov.2025 14:36:11.228] [Render thread/INFO] [com.mojang.blaze3d.audio.Library/]: OpenAL initialized on device JACK Default
+[14nov.2025 14:36:11.229] [Render thread/INFO] [net.minecraft.client.sounds.SoundEngine/SOUNDS]: Sound engine started
+[14nov.2025 14:36:11.628] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 1024x1024x0 minecraft:textures/atlas/blocks.png-atlas
+[14nov.2025 14:36:11.766] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x0 minecraft:textures/atlas/signs.png-atlas
+[14nov.2025 14:36:11.771] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x512x0 minecraft:textures/atlas/shield_patterns.png-atlas
+[14nov.2025 14:36:11.776] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x512x0 minecraft:textures/atlas/banner_patterns.png-atlas
+[14nov.2025 14:36:11.781] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 1024x1024x0 minecraft:textures/atlas/armor_trims.png-atlas
+[14nov.2025 14:36:11.805] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 128x64x0 minecraft:textures/atlas/decorated_pot.png-atlas
+[14nov.2025 14:36:11.807] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x0 minecraft:textures/atlas/chest.png-atlas
+[14nov.2025 14:36:11.809] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x0 minecraft:textures/atlas/shulker_boxes.png-atlas
+[14nov.2025 14:36:11.811] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x0 minecraft:textures/atlas/beds.png-atlas
+[14nov.2025 14:36:12.325] [Render thread/WARN] [net.minecraft.client.renderer.ShaderInstance/]: Shader rendertype_entity_translucent_emissive could not find sampler named Sampler2 in the specified shader program.
+[14nov.2025 14:36:12.649] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x0 minecraft:textures/atlas/particles.png-atlas
+[14nov.2025 14:36:12.666] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x0 minecraft:textures/atlas/paintings.png-atlas
+[14nov.2025 14:36:12.677] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 128x128x0 minecraft:textures/atlas/mob_effects.png-atlas
+[14nov.2025 14:36:13.663] [Realms Notification Availability checker #1/INFO] [com.mojang.realmsclient.client.RealmsClient/]: Could not authorize you against Realms server: java.lang.RuntimeException: Failed to parse into SignedJWT: 0
+[14nov.2025 14:43:56.272] [Render thread/INFO] [net.minecraftforge.registries.GameData/REGISTRIES]: Injecting existing registry data into this CLIENT instance
+[14nov.2025 14:44:02.103] [Render thread/INFO] [com.me.master.masterchanges.MasterChanges/]: Comandos registrados
+[14nov.2025 14:44:03.490] [Render thread/INFO] [net.minecraft.world.item.crafting.RecipeManager/]: Loaded 7 recipes
+[14nov.2025 14:44:04.029] [Render thread/INFO] [net.minecraft.advancements.AdvancementList/]: Loaded 1271 advancements
+[14nov.2025 14:44:05.475] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Starting integrated minecraft server version 1.20.1
+[14nov.2025 14:44:05.475] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Generating keypair
+[14nov.2025 14:44:18.120] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Preparing start region for dimension minecraft:overworld
+[14nov.2025 14:44:38.645] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[14nov.2025 14:44:38.646] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[14nov.2025 14:44:38.646] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[14nov.2025 14:44:38.646] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[14nov.2025 14:44:38.648] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[14nov.2025 14:44:38.649] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[14nov.2025 14:44:38.649] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[14nov.2025 14:44:38.650] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[14nov.2025 14:44:38.651] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[14nov.2025 14:44:38.652] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[14nov.2025 14:44:38.653] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[14nov.2025 14:44:38.654] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[14nov.2025 14:44:38.655] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[14nov.2025 14:44:38.656] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[14nov.2025 14:44:38.657] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[14nov.2025 14:44:38.657] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[14nov.2025 14:44:38.657] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[14nov.2025 14:44:38.658] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[14nov.2025 14:44:38.658] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[14nov.2025 14:44:38.658] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[14nov.2025 14:44:38.658] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[14nov.2025 14:44:38.659] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[14nov.2025 14:44:38.659] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[14nov.2025 14:44:38.659] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[14nov.2025 14:44:38.659] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[14nov.2025 14:44:38.660] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[14nov.2025 14:44:38.660] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[14nov.2025 14:44:38.661] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[14nov.2025 14:44:38.661] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[14nov.2025 14:44:38.661] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[14nov.2025 14:44:38.662] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[14nov.2025 14:44:38.662] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[14nov.2025 14:44:38.662] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[14nov.2025 14:44:38.662] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[14nov.2025 14:44:38.663] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[14nov.2025 14:44:38.663] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[14nov.2025 14:44:38.663] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[14nov.2025 14:44:38.663] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[14nov.2025 14:44:38.666] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[14nov.2025 14:44:38.666] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[14nov.2025 14:44:38.666] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[14nov.2025 14:44:38.667] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[14nov.2025 14:44:39.136] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[14nov.2025 14:44:39.630] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 5%
+[14nov.2025 14:44:40.132] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 19%
+[14nov.2025 14:44:40.633] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 32%
+[14nov.2025 14:44:41.135] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 47%
+[14nov.2025 14:44:41.632] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 68%
+[14nov.2025 14:44:42.128] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 83%
+[14nov.2025 14:44:42.638] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 86%
+[14nov.2025 14:44:43.191] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 93%
+[14nov.2025 14:44:43.306] [Server thread/INFO] [net.minecraftforge.server.permission.PermissionAPI/]: Successfully initialized permission handler forge:default_handler
+[14nov.2025 14:44:43.306] [Server thread/INFO] [com.me.master.masterchanges.MasterChanges/]: MasterChanges server starting
+[14nov.2025 14:44:43.311] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Time elapsed: 25185 ms
+[14nov.2025 14:44:44.823] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Changing view distance to 2, from 10
+[14nov.2025 14:44:44.843] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Changing simulation distance to 5, from 0
+[14nov.2025 14:44:45.374] [Render thread/WARN] [io.netty.util.internal.SystemPropertyUtil/]: Unable to parse the boolean system property 'java.net.preferIPv6Addresses':system - using the default value: false
+[14nov.2025 14:44:45.707] [Server thread/WARN] [net.minecraft.server.MinecraftServer/]: Can't keep up! Is the server overloaded? Running 2301ms or 46 ticks behind
+[14nov.2025 14:44:46.575] [Netty Local Client IO #0/INFO] [net.minecraftforge.network.NetworkHooks/]: Connected to a modded server.
+[14nov.2025 14:44:46.766] [Server thread/INFO] [net.minecraft.server.players.PlayerList/]: Dev[local:E:0207c075] logged in with entity id 161 at (-327.9937799020527, 104.0, -231.74136246412905)
+[14nov.2025 14:44:46.948] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Dev joined the game
+[14nov.2025 14:44:47.125] [Render thread/INFO] [ChunkBuilder/]: Started 1 worker threads
+[14nov.2025 14:44:47.878] [Render thread/INFO] [net.minecraft.advancements.AdvancementList/]: Loaded 197 advancements
+[14nov.2025 14:44:49.563] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Saving and pausing game...
+[14nov.2025 14:44:49.638] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
+[14nov.2025 14:44:54.801] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
+[14nov.2025 14:44:54.804] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
+[14nov.2025 14:45:47.063] [Server thread/WARN] [net.minecraft.server.MinecraftServer/]: Can't keep up! Is the server overloaded? Running 2007ms or 40 ticks behind
+[14nov.2025 14:45:48.888] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: [Dev: Gave 1 [Buh Cat Totem of Undying] to Dev]
+[14nov.2025 14:45:48.964] [Render thread/INFO] [net.minecraft.client.gui.components.ChatComponent/]: [System] [CHAT] Gave 1 [Buh Cat Totem of Undying] to Dev
+[14nov.2025 14:45:55.314] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: [Dev: Applied 100.0 damage to Dev]
+[14nov.2025 14:45:55.332] [Render thread/INFO] [net.minecraft.client.gui.components.ChatComponent/]: [System] [CHAT] Applied 100.0 damage to Dev
+[14nov.2025 14:45:58.355] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Saving and pausing game...
+[14nov.2025 14:45:58.475] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
+[14nov.2025 14:45:58.581] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
+[14nov.2025 14:45:58.584] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
+[14nov.2025 14:46:05.375] [Server thread/WARN] [net.minecraft.server.MinecraftServer/]: Can't keep up! Is the server overloaded? Running 2019ms or 40 ticks behind
+[14nov.2025 14:46:08.287] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: [Dev: Gave 1 [Totem Old] to Dev]
+[14nov.2025 14:46:08.290] [Render thread/INFO] [net.minecraft.client.gui.components.ChatComponent/]: [System] [CHAT] Gave 1 [Totem Old] to Dev
+[14nov.2025 14:46:10.397] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Dev ha popeado Totem Old
+[14nov.2025 14:46:10.400] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: [Dev: Applied 100.0 damage to Dev]
+[14nov.2025 14:46:10.458] [Render thread/INFO] [net.minecraft.client.gui.components.ChatComponent/]: [System] [CHAT] Dev ha popeado Totem Old
+[14nov.2025 14:46:10.459] [Render thread/INFO] [net.minecraft.client.gui.components.ChatComponent/]: [System] [CHAT] Applied 100.0 damage to Dev
+[14nov.2025 14:46:11.448] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Saving and pausing game...
+[14nov.2025 14:46:11.481] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
+[14nov.2025 14:46:11.533] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
+[14nov.2025 14:46:11.537] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
+[14nov.2025 14:46:12.883] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Stopping!
+[14nov.2025 14:46:13.215] [Server thread/INFO] [net.minecraft.server.network.ServerGamePacketListenerImpl/]: Dev lost connection: Disconnected
+[14nov.2025 14:46:13.216] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Dev left the game
+[14nov.2025 14:46:13.255] [Server thread/INFO] [net.minecraft.server.network.ServerGamePacketListenerImpl/]: Stopping singleplayer server as player logged out
+[14nov.2025 14:46:13.610] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Stopping server
+[14nov.2025 14:46:13.613] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving players
+[14nov.2025 14:46:13.614] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving worlds
+[14nov.2025 14:46:19.858] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
+[14nov.2025 14:46:22.118] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
+[14nov.2025 14:46:22.122] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
+[14nov.2025 14:46:22.182] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (New World): All chunks are saved
+[14nov.2025 14:46:22.182] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[14nov.2025 14:46:22.182] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[14nov.2025 14:46:22.182] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage: All dimensions are saved
+[14nov.2025 14:46:24.346] [Render thread/INFO] [ChunkBuilder/]: Stopping worker threads

@@ -1,8 +1,10 @@
 package com.me.master.masterchanges.item;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -79,6 +81,9 @@ public class BuhCatTotemItem extends Item implements GeoItem {
             if (entity instanceof ServerPlayer player) {
                 player.awardStat(Stats.ITEM_USED.get(stack.getItem()));
 
+
+                broadcastTotemPop(player, stack);
+
                 if (uses >= 3) {
                     ServerLevel serverLevel = (ServerLevel) player.level();
                     BlockPos spawnPos = player.getRespawnPosition();
@@ -104,5 +109,12 @@ public class BuhCatTotemItem extends Item implements GeoItem {
             return true;
         }
         return false;
+    }
+
+    private static void broadcastTotemPop(ServerPlayer player, ItemStack totem) {
+        String totemName = totem.getHoverName().getString();
+        Component message = Component.literal(player.getName().getString() + " ha popeado " + totemName)
+                .withStyle(ChatFormatting.RED);
+        player.getServer().getPlayerList().broadcastSystemMessage(message, false);
     }
 }

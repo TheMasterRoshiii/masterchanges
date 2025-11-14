@@ -4,6 +4,8 @@ import com.me.master.masterchanges.MasterChanges;
 import com.me.master.masterchanges.item.ModItems;
 import com.me.master.masterchanges.network.ModNetworking;
 import com.me.master.masterchanges.network.TotemPopPacket;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -25,7 +27,6 @@ public class TotemEventHandler {
         ItemStack offHand = player.getOffhandItem();
         ItemStack totemUsed = ItemStack.EMPTY;
 
-
         if (isNormalTotem(mainHand)) {
             totemUsed = mainHand.copy();
             activateNormalTotem(player, mainHand);
@@ -34,9 +35,7 @@ public class TotemEventHandler {
             totemUsed = offHand.copy();
             activateNormalTotem(player, offHand);
             event.setCanceled(true);
-        }
-
-        else if (mainHand.is(ModItems.TOTEM_OWL.get())) {
+        } else if (mainHand.is(ModItems.TOTEM_OWL.get())) {
             totemUsed = mainHand.copy();
             activateOwlTotem(player, mainHand);
             event.setCanceled(true);
@@ -46,9 +45,9 @@ public class TotemEventHandler {
             event.setCanceled(true);
         }
 
-
         if (!totemUsed.isEmpty() && player instanceof ServerPlayer serverPlayer) {
             ModNetworking.sendToPlayer(new TotemPopPacket(totemUsed), serverPlayer);
+            broadcastTotemPop(serverPlayer, totemUsed);
         }
     }
 
@@ -67,8 +66,6 @@ public class TotemEventHandler {
         player.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 100, 1));
         player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 800, 0));
         totem.shrink(1);
-
-
     }
 
     private static void activateOwlTotem(Player player, ItemStack totem) {
@@ -80,5 +77,12 @@ public class TotemEventHandler {
         player.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 600, 0));
         player.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 900, 0));
         totem.shrink(1);
+    }
+
+    private static void broadcastTotemPop(ServerPlayer player, ItemStack totem) {
+        String totemName = totem.getHoverName().getString();
+        Component message = Component.literal(player.getName().getString() + " ha popeado " + totemName)
+                .withStyle(ChatFormatting.RED);
+        player.getServer().getPlayerList().broadcastSystemMessage(message, false);
     }
 }
