@@ -32,6 +32,7 @@ public enum DifficultyFeature {
     ENDERMAN_STEAL_ITEMS("enderman_steal_items", "Enderman roba items del inventario"),
     ENDERMAN_CANCEL_TOTEM("enderman_cancel_totem", "Enderman anula totems"),
     ENDERMAN_TELEPORT_HUNT("enderman_teleport_hunt", "Enderman se teletransporta cerca del jugador"),
+    ENDERMAN_NO_WATER_FEAR("enderman_no_water_fear", "Enderman no le teme al agua"),
     FAST_DURABILITY_LOSS("fast_durability_loss", "Herramientas/armaduras pierden durabilidad 2-3x más rápido"),
     SHIELD_FAIL_CHANCE("shield_fail_chance", "Escudos tienen % de fallar al bloquear"),
     ENCHANTMENT_FAIL_CHANCE("enchantment_fail_chance", "Encantamientos tienen % de fallar temporalmente"),
@@ -73,12 +74,8 @@ public enum DifficultyFeature {
     DOOR_DAMAGE_ON_OPEN("door_damage_on_open", "Puertas hacen 9M de daño al abrirse"),
     LEVER_DAMAGE_ON_USE("lever_damage_on_use", "Palancas hacen 9M de daño al usarse"),
     PILLAGER_ROCKET("pillager_rocket", "Pillagers usan cohetes explosivos"),
-    TRAPDOOR_DAMAGE_ON_USE("trapdoor_damage_on_use", "Trampillas hacen 9M de daño al usarse");
-
-
-
-
-
+    TRAPDOOR_DAMAGE_ON_USE("trapdoor_damage_on_use", "Trampillas hacen 9M de daño al usarse"),
+    MOB_SUN_IMMUNITY("mob_sun_immunity", "Mobs hostiles no reciben daño del sol");
 
     private final String id;
     private final String description;

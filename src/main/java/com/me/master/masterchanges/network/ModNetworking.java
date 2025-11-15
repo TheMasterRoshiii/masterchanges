@@ -44,6 +44,17 @@ public class ModNetworking {
                 .consumerMainThread(TotemPopPacket::handle)
                 .add();
 
+        net.messageBuilder(TrackPlayerPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(TrackPlayerPacket::new)
+                .encoder(TrackPlayerPacket::toBytes)
+                .consumerMainThread(TrackPlayerPacket::handle)
+                .add();
+
+        net.messageBuilder(MobcapConfigPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(MobcapConfigPacket::new)
+                .encoder(MobcapConfigPacket::toBytes)
+                .consumerMainThread(MobcapConfigPacket::handle)
+                .add();
     }
 
     public static <MSG> void sendToServer(MSG message) {

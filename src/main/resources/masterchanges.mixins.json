@@ -52,11 +52,16 @@
     "BlazeDragonFireballMixin",
     "WitchAbilitiesMixin",
     "WitchTotemMixin",
-    "FireworkRocketMixin"
+    "FireworkRocketMixin",
+    "MobSunImmunityMixin",
+    "EndermanWaterMixin",
+    "DisableSpawnInvulnerabilityMixin",
+    "CombatLogMixin"
 
   ],
   "client": [
-    "GameRendererOverrideMixin"
+    "GameRendererOverrideMixin",
+    "AcidRainColorMixin"
   ],
   "injectors": {
     "defaultRequire": 1

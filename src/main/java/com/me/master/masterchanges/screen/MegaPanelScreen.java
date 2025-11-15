@@ -48,8 +48,18 @@ public class MegaPanelScreen extends Screen {
         this.searchBox.setMaxLength(50);
         this.addRenderableWidget(this.searchBox);
 
+        this.addRenderableWidget(Button.builder(
+                        Component.literal("§bTracking"),
+                        btn -> this.minecraft.setScreen(new PlayerTrackingScreen(this)))
+                .bounds(centerX - 150, 55, 65, 18).build());
+
+        this.addRenderableWidget(Button.builder(
+                        Component.literal("§eMobcap"),
+                        btn -> this.minecraft.setScreen(new MobcapConfigScreen(this)))
+                .bounds(centerX - 80, 55, 65, 18).build());
+
         int catX = 10;
-        int catY = 60;
+        int catY = 80;
         int catWidth = 80;
 
         for (Category cat : Category.values()) {

@@ -212,11 +212,20 @@ public class DifficultyEventHandler {
         MixinConfigManager config = MixinConfigManager.getInstance();
 
         if (manager.isFeatureEnabled(DifficultyFeature.INFINITE_FIRE)) {
-            if (entity.isOnFire() && !entity.isInWaterOrBubble()) {
+            if (entity.isOnFire() && !entity.isInWaterOrBubble() && !entity.isInPowderSnow) {
+                BlockPos pos = entity.blockPosition();
+                BlockState blockBelow = level.getBlockState(pos);
+
+                if (blockBelow.getBlock() instanceof net.minecraft.world.level.block.LayeredCauldronBlock) {
+                    entity.clearFire();
+                    return;
+                }
+
                 int fireTicks = config.getInt("infinite_fire", "fireTicks", 200);
                 entity.setRemainingFireTicks(fireTicks);
             }
         }
+
 
         if (manager.isFeatureEnabled(DifficultyFeature.ACID_RAIN)) {
             if (entity instanceof Player player && level.isRaining() && level.canSeeSky(player.blockPosition().above())) {

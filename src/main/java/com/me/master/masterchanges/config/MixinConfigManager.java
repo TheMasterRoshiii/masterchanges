@@ -10,7 +10,11 @@ public class MixinConfigManager {
     private static final MixinConfigManager INSTANCE = new MixinConfigManager();
     private final Map<String, MixinConfig> mixinConfigs = new ConcurrentHashMap<>();
 
-    private MixinConfigManager() { initializeConfigs(); }
+    private MixinConfigManager() {
+        initializeConfigs();
+        loadPersistedConfigs();
+    }
+
     public static MixinConfigManager getInstance() { return INSTANCE; }
 
     private void initializeConfigs() {
@@ -46,6 +50,7 @@ public class MixinConfigManager {
             registerMixin("enderman_steal_items", "Enderman roba items", false, "stealChance:0.3", "itemsToSteal:3");
             registerMixin("enderman_cancel_totem", "Enderman anula totem", false, "cancelChance:0.5");
             registerMixin("enderman_teleport_hunt", "Enderman teleport caza", false, "teleportRange:16.0", "huntInterval:60");
+            registerMixin("enderman_no_water_fear", "Enderman sin miedo al agua", false);
             registerMixin("fast_durability_loss", "Pérdida durabilidad rápida", false, "multiplierMin:2", "multiplierExtra:2");
             registerMixin("shield_fail_chance", "Escudo falla", false, "failChance:0.25");
             registerMixin("enchantment_fail_chance", "Encantamiento falla", false, "failChance:0.2", "failDuration:100");
@@ -88,9 +93,26 @@ public class MixinConfigManager {
             registerMixin("lever_damage_on_use", "Palanca daño al usar", false, "damage:9000000.0");
             registerMixin("trapdoor_damage_on_use", "Trampilla daño al usar", false, "damage:9000000.0");
             registerMixin("pillager_rocket", "Pillager Cohetes Explosivos", false, "rocketCount:64", "explosionPower:3", "explosionRadius:2.5", "multishotLevel:1", "quickChargeLevel:3", "setFire:false");
+            registerMixin("mob_sun_immunity", "Mobs sin daño de sol", false);
         } catch (Exception e) {
             System.err.println("Error initializing configs: " + e.getMessage());
             e.printStackTrace();
+        }
+    }
+
+    private void loadPersistedConfigs() {
+        try {
+            Map<String, ConfigPersistence.ConfigData> savedData = ConfigPersistence.loadConfigs();
+            savedData.forEach((id, data) -> {
+                MixinConfig config = mixinConfigs.get(id);
+                if (config != null) {
+                    config.setEnabled(data.enabled);
+                    data.parameters.forEach(config::setParameter);
+                    syncToDifficultyManager(id, data.enabled);
+                }
+            });
+        } catch (Exception e) {
+            System.err.println("Error loading persisted configs: " + e.getMessage());
         }
     }
 
@@ -116,6 +138,7 @@ public class MixinConfigManager {
             if (config != null) {
                 config.setEnabled(enabled);
                 syncToDifficultyManager(mixinId, enabled);
+                saveConfigs();
             }
         } catch (Exception e) {
             System.err.println("Error setting mixin enabled " + mixinId + ": " + e.getMessage());
@@ -159,10 +182,15 @@ public class MixinConfigManager {
                 if (mixinId.equals("ghast_explosion_multiplier") && key.equals("multiplier")) {
                     DifficultyManager.getInstance().setGhastExplosionMultiplier(((Number)value).floatValue());
                 }
+                saveConfigs();
             }
         } catch (Exception e) {
             System.err.println("Error setting parameter: " + e.getMessage());
         }
+    }
+
+    private void saveConfigs() {
+        ConfigPersistence.saveConfigs(mixinConfigs);
     }
 
     public <T> T getParameter(String mixinId, String key, Class<T> type, T defaultValue) {

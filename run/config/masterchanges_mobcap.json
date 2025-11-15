@@ -1,0 +1,14 @@
+{
+  "mobcaps": {
+    "ambient": 15,
+    "passive": 10,
+    "water": 5,
+    "hostile": 70,
+    "water_ambient": 20
+  },
+  "allowedMobs": {
+    "illusioner": true,
+    "giant": true,
+    "elder_guardian": true
+  }
+}

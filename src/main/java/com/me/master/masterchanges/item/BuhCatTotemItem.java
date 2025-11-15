@@ -81,19 +81,20 @@ public class BuhCatTotemItem extends Item implements GeoItem {
             if (entity instanceof ServerPlayer player) {
                 player.awardStat(Stats.ITEM_USED.get(stack.getItem()));
 
-
                 broadcastTotemPop(player, stack);
 
                 if (uses >= 3) {
-                    ServerLevel serverLevel = (ServerLevel) player.level();
+                    ServerLevel targetLevel = player.server.getLevel(player.getRespawnDimension());
+                    if (targetLevel == null) targetLevel = (ServerLevel) player.level();
+
                     BlockPos spawnPos = player.getRespawnPosition();
 
-                    if (spawnPos != null) {
-                        player.teleportTo(serverLevel, spawnPos.getX() + 0.5, spawnPos.getY(), spawnPos.getZ() + 0.5,
+                    if (spawnPos != null && player.getRespawnDimension().equals(targetLevel.dimension())) {
+                        player.teleportTo(targetLevel, spawnPos.getX() + 0.5, spawnPos.getY(), spawnPos.getZ() + 0.5,
                                 player.getYRot(), player.getXRot());
                     } else {
-                        BlockPos worldSpawn = serverLevel.getSharedSpawnPos();
-                        player.teleportTo(serverLevel, worldSpawn.getX() + 0.5, worldSpawn.getY(), worldSpawn.getZ() + 0.5,
+                        BlockPos worldSpawn = targetLevel.getSharedSpawnPos();
+                        player.teleportTo(targetLevel, worldSpawn.getX() + 0.5, worldSpawn.getY(), worldSpawn.getZ() + 0.5,
                                 player.getYRot(), player.getXRot());
                     }
                     player.playSound(SoundEvents.ENDERMAN_TELEPORT, 1.0F, 1.0F);
