@@ -75,7 +75,8 @@ public enum DifficultyFeature {
     LEVER_DAMAGE_ON_USE("lever_damage_on_use", "Palancas hacen 9M de daño al usarse"),
     PILLAGER_ROCKET("pillager_rocket", "Pillagers usan cohetes explosivos"),
     TRAPDOOR_DAMAGE_ON_USE("trapdoor_damage_on_use", "Trampillas hacen 9M de daño al usarse"),
-    MOB_SUN_IMMUNITY("mob_sun_immunity", "Mobs hostiles no reciben daño del sol");
+    MOB_SUN_IMMUNITY("mob_sun_immunity", "Mobs hostiles no reciben daño del sol"),
+    DISABLE_SPAWN_INVULNERABILITY("disable_spawn_invulnerability", "Jugadores sin invulnerabilidad al entrar al mundo");
 
     private final String id;
     private final String description;

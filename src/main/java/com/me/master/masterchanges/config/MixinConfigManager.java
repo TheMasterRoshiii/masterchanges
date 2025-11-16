@@ -94,6 +94,7 @@ public class MixinConfigManager {
             registerMixin("trapdoor_damage_on_use", "Trampilla daño al usar", false, "damage:9000000.0");
             registerMixin("pillager_rocket", "Pillager Cohetes Explosivos", false, "rocketCount:64", "explosionPower:3", "explosionRadius:2.5", "multishotLevel:1", "quickChargeLevel:3", "setFire:false");
             registerMixin("mob_sun_immunity", "Mobs sin daño de sol", false);
+            registerMixin("disable_spawn_invulnerability", "Sin invulnerabilidad al entrar", false);
         } catch (Exception e) {
             System.err.println("Error initializing configs: " + e.getMessage());
             e.printStackTrace();
